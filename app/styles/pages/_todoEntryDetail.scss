@@ -1,0 +1,16 @@
+#TodoentrydetailCtrl{
+    .content{
+        margin-top:10px;
+        min-height:500px;
+    }    
+    .header{
+        height:100px;
+    }
+    .finish{
+        position:relative;
+        top:0px;
+        md-icon{
+            color:white;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<md-dialog-content>
+	<div class="md-dialog-content">
+        <h2>Login</h2>
+		<md-content class="md-padding">
+			<form ng-submit="login()">
+				<md-input-container class="md-icon-float md-block">
+					<label>Name</label>
+					<md-icon md-svg-src="images/icons/users81.svg" class="name"></md-icon>
+					<input ng-model="user.name" type="text">
+				</md-input-container>
+				<md-input-container class="md-icon-float md-block">
+					<label>Passwort</label>
+					<md-icon md-svg-src="images/icons/key162.svg" class="name"></md-icon>
+					<input ng-model="user.password" type="password">
+				</md-input-container>
+				<md-button type="submit" class="md-raised md-primary" >Ilogge</md-button>
+			</form>
+		</md-content>
+	</div>
+</md-dialog-content>

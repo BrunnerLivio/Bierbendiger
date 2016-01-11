@@ -1,0 +1,13 @@
+<md-content layout-padding >
+    <md-progress-linear md-mode="indeterminate" ng-visible="loadingStatus == 1"></md-progress-linear>
+    <form ng-submit="msgOfTheDayForm.$valid && save(msgOfTheDayForm)" name="msgOfTheDayForm">
+        <md-input-container class="md-block" flex>
+            <label>Nachricht vom Tag</label>
+            <input required type="text" name="message" ng-model="message">
+            <div ng-messages="msgOfTheDayForm.message.$error" ng-if="msgOfTheDayForm.message.$touched || msgOfTheDayForm.$submitted">
+                <div ng-message="required">Du musch scho en Nachricht igeh, Joggel.</div>
+            </div>
+        </md-input-container>
+        <md-button class="md-raised" ng-disabled="loadingStatus == 1" flex>Hinzuefüege</md-button>
+    </form>
+</md-content>

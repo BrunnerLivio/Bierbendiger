@@ -1,0 +1,25 @@
+finish-button{
+    position:relative;
+    top:-30px;
+    md-icon{
+        color:white !important;
+    }
+    
+}
+#proofPhotoPopup{
+    padding:10px;
+    max-height:none !important;
+    md-icon{
+        width:16px;
+        height:16px;
+    }
+    .thumbnail{
+        margin-top:20px;
+        width:100px;
+        height:0;
+        transition:height 0.5s ease-in-out;
+        &.active{
+            height:100px;
+        }
+    }
+}

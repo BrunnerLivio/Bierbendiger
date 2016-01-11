@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteRule .? - [E=Authorization:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]

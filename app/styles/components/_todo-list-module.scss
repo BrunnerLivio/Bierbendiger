@@ -1,0 +1,13 @@
+todo-list-module{
+    height:100%;
+    width:100%;
+    display:block;
+    md-list{
+        md-list-item{
+            margin-bottom:10px;
+            p.Message{
+                white-space: pre-wrap;
+            }
+        }
+    }
+}

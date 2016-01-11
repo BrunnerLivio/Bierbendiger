@@ -1,0 +1,26 @@
+#NewtodoentryCtrl{
+    .content{
+        margin-bottom:10px;
+        margin-top:10px;
+    }
+    .md-datepicker-button {
+        width: 36px; 
+    }
+   .angular-google-map-container { 
+       height:380px;
+       width:calc(100% - 10px);
+   }
+   .map{
+       margin:10px;
+       transition:height 0.5s ease-in-out;
+       height:380px;
+       &.hidden{
+           height:0px !important;
+       }
+       overflow:hidden;
+       width:calc(100% - 10px);
+   }
+}
+.md-datepicker-calendar-pane{
+    background-color:white !important;
+}

@@ -1,0 +1,26 @@
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods: "GET"
+
+<ifModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# Intercept any requests to assets, core, etc. here.. and keep them being written to the core (so they don't go to index.php)
+RewriteRule ^scripts/(.*)$ /site/dist/scripts/$1 [NC,L]
+RewriteRule ^images/(.*)$ /site/dist/images/$1 [NC,L]
+RewriteRule ^api/(.*)$ index-api.php/$1 [NC,L]
+
+# The magic, stops any requests to a file for being redirected.
+# needed to be under the /core/ redirect
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+# Rewrite all requests to my Grunt generated dist index.html
+RewriteRule ^(.*) /site/dist/index.html [NC,L]
+
+# Some requests (without trailing slashes) can fall through the above rule. This bit catches those stragglers.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ /$1/ [L,R=301]
+
+</ifModule>

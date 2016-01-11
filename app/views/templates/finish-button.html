@@ -1,0 +1,36 @@
+<md-menu>
+    <md-button class="md-fab finish" ng-click="openPopup($mdOpenMenu, $event)">
+        <md-icon md-svg-src="images/icons/checkered12.svg"></md-icon>
+    </md-button>
+    <md-menu-content id="proofPhotoPopup">
+        <md-content>
+            <h2>Bewisfoti/-video ufelade</h2>
+            <form name="proofPhotoForm">
+                <div>
+                    <md-input-container class="md-block" flex>
+                        <div layout="row" flex>
+                            <md-button class="md-raised md-primary" md-prevent-menu-close="md-prevent-menu-close" ngf-select="fileSelect()" ng-model="file"
+                            name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'">
+                                <md-icon md-svg-src="images/icons/file129.svg"></md-icon>
+                                Datei uswähle
+                            </md-button>
+                        </div>
+                        <div flex layout="row">
+                            <img src="images/thumb.jpg" ngf-thumbnail="file" class="thumbnail {{thumbnailActiveClass}}" />
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="end end">
+                    <md-button class="md-primary" md-prevent-menu-close="md-prevent-menu-close" ng-click="endChallenge(file)">
+                        <md-icon md-svg-src="images/icons/check35.svg"></md-icon>
+                        <span>Speichere</span>
+                    </md-button>
+                    <md-button class="md-warn" md-prevent-menu-close="md-prevent-menu-close" ng-click="closePopup()">
+                        <md-icon md-svg-src="images/icons/close47.svg"></md-icon>
+                        <span>Schlüsse</span>
+                    </md-button>
+                </div>
+            </form>
+        </md-content>
+    </md-menu-content>
+</md-menu>

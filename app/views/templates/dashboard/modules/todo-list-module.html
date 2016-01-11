@@ -1,0 +1,21 @@
+ <md-toolbar fancy-transition="triggerTransition" fancy-transition-include="'views/templates/dashboard/newTodoEntry.html'">
+    <div class="md-toolbar-tools">
+        <md-button flex ng-click="openNewEntryModal()">
+            <md-icon md-svg-src="images/icons/add186.svg"></md-icon>
+            <span layout-margin>Neue Bitrag erstelle</span>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-content layout-padding>
+    <md-progress-linear md-mode="indeterminate" ng-visible="entries == null"></md-progress-linear>
+    <md-list>
+        <md-list-item ng-repeat="entry in entries | orderBy:'-CreationDate'" fancy-transition="entry.IsOpen" fancy-transition-background="white" fancy-transition-include="'views/templates/dashboard/todoEntry-Detail.html'">
+            <img layout="column" alt="{{ entry.user.Username }}" ng-src="{{ 'api/images/profilepictures/' + entry.user.Profilepicture }}" class="md-avatar" />
+            <div layout="column">
+                <h2 ng-bind="entry.Title" layout="row" ng-click="openEntry(entry)"></h2>
+                <p ng-bind="entry.Message" layout="row" class="Message"></p>
+            </div>
+            <md-divider inset></md-divider>
+        </md-list-item>
+    </md-list>
+</md-content>

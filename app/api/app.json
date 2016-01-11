@@ -1,0 +1,23 @@
+{
+	"Mode": "Debug",
+	"Database":{
+		"Release":{
+			"host":"localhost",
+			"username": "homos",
+			"password": "1234",
+			"database": "homos"
+		},
+		"Test":{
+			"host":"localhost",
+			"username": "homos_test",
+			"password": "michi96",
+			"database": "homos_test"
+		},
+		"Debug":{
+			"host":"localhost",
+			"username": "root",
+			"password": "",
+			"database": "bierbendiger"
+		}
+	}
+}

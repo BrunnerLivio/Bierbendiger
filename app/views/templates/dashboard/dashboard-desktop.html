@@ -1,0 +1,38 @@
+<div layout="row" flex layout-padding>
+    <div flex="30" flex-offset="5"  id="leftModules">
+        <div layout="row" layout-margin flex>
+            <module>
+                <md-toolbar flex layout-padding >
+                    <h3>
+                        <md-icon md-svg-src="images/icons/users81.svg" class="s24" ></md-icon>
+                        <span>Benutzer</span>
+                    </h3>
+                </md-toolbar>
+                <user-module></user-module>
+            </module>
+        </div>
+        <div layout="row" layout-margin flex>
+            <module>
+                <md-toolbar flex layout-padding>
+                    <h3>
+                        <md-icon md-svg-src="images/icons/speech117.svg" class="s24" ></md-icon>
+                        <span>Spruch vom Tag</span>
+                    </h3>
+                </md-toolbar>
+                <message-of-the-day-module></message-of-the-day-module>
+            </module>
+        </div>
+    </div>
+    <div flex="60" flex-offset="0" layout-margin flex-offset-sm="0">
+        <module>
+            <md-toolbar flex layout-padding class="md-accent">
+                <h3>
+                    <md-icon md-svg-src="images/icons/verification5.svg" class="s24" ></md-icon>
+                    <span>Todos</span>
+                </h3>
+            </md-toolbar>
+            <todo-list-module></todo-list-module>
+        </module>
+        
+    </div>
+</div>
