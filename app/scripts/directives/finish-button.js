@@ -8,6 +8,10 @@
  */
 angular.module('bierbendigerApp')
   .directive('finishButton', function ($mdDialog, Upload, $mdMenu, $timeout, BierbendigerService, $rootScope) {
+    var $element;
+    function finish(){
+        $element.find(".finish").addClass("finished");
+    }
     return {
       templateUrl: 'views/templates/finish-button.html',
       restrict: 'E',
@@ -25,7 +29,7 @@ angular.module('bierbendigerApp')
               if(file){
                   $mdMenu.hide();
                   BierbendigerService.finishTodoEntry({file : file, entryId : $rootScope.$routeParams.todoId}).then(function(){
-                      
+                      finish();
                   });
               } else {
                   
@@ -35,7 +39,13 @@ angular.module('bierbendigerApp')
               $mdMenu.hide();
           }
       },
-      link: function postLink(scope, element, attrs) {
+
+      link: function postLink(scope, element, attrs, ctrl) {
+          $element = element;
+          console.log(attrs.finished);
+          if(attrs.finished != 0){
+              finish();
+          }
       }
     };
   });

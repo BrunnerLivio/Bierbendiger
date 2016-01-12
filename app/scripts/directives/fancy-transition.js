@@ -8,12 +8,15 @@
  */
 angular.module('bierbendigerApp')
   .directive('fancyTransition', function ($compile) {
+    var lastTopPosition;
     return {
         restrict: 'A',
         link: function(scope, element, attributes) {
+            
             scope.$watch(attributes.fancyTransition, function(value){
                 var $fancyTransition = $(".fancy-transition");
                 if(value){
+                    $(".container").css("overflow", "hidden");
                     element.children().fadeOut().promise().done(function() {
                         var $newElement = $("<div></div>");
                         var background;
@@ -34,6 +37,8 @@ angular.module('bierbendigerApp')
                         $("body").append($newElement);
                         window.setTimeout(function(){
                             $newElement.addClass("fullscreen");
+                            lastTopPosition = $newElement.css("top");
+                            $newElement.css("top", $(document).scrollTop() + "px");
                             window.setTimeout(function(){
                                 var $includeElement = $("<div></div>");
                                 $includeElement.addClass("include-element");
@@ -43,7 +48,8 @@ angular.module('bierbendigerApp')
                                 scope.$apply();  
                                 window.setTimeout(function(){
                                     $newElement.find(".include-element").addClass("faded");
-                                    $("body").css("overflow", "hidden");
+                                    $(".container").css({"height": "0px"});
+                                    $newElement.css("top","0px");
                                 }, 20);
                             }, 500);
                         }, 20); 
@@ -54,7 +60,8 @@ angular.module('bierbendigerApp')
                     window.setTimeout(function(){
                         $includeElement.remove();
                         $fancyTransition.removeClass("fullscreen");
-                        $("body").css("overflow", "auto");
+                        $fancyTransition.css("top", lastTopPosition);
+                        $(".container").css({"overflow":"auto", "height": "auto"});
                         window.setTimeout(function(){
                             $fancyTransition.remove();
                             element.children().fadeIn();

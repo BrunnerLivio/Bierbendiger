@@ -4,7 +4,7 @@
             <md-toolbar class="md-primary header" layout="row">
                 <h1 ng-bind="selectedEntry.Title" layout-margin flex></h1>
             </md-toolbar>
-            <finish-button></finish-button>  
+            <finish-button finished="{{selectedEntry.Finished}}"></finish-button>  
             <md-content flex layout-padding>
                 <p ng-bind="selectedEntry.Message"></p>
             </md-content>

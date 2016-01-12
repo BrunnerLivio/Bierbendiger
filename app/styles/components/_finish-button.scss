@@ -1,9 +1,33 @@
 finish-button{
     position:relative;
     top:-30px;
-    md-icon{
-        color:white !important;
+    .finish{
+        transition: background 0.5s ease-in-out;
+        & > .finishedIcon{
+            left:-100px;
+        }
+        & > .checkeredIcon{
+            left:10px;
+        }
+        &.finished{
+            background:#42bd41;
+            & > .finishedIcon{
+                left:-17px;
+            }
+            & > .checkeredIcon{
+                left:100px;
+            }
+            &:hover{
+                background:#259b24 !important;
+            }
+        }
+        md-icon{
+            color:white !important;
+            position:relative;
+            transition:left 0.5s ease-in-out;
+        }
     }
+    
     
 }
 #proofPhotoPopup{
