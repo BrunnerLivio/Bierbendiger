@@ -11,11 +11,13 @@
        width:calc(100% - 10px);
    }
    .map{
-       margin:10px;
        transition:height 0.5s ease-in-out;
        height:380px;
        &.hidden{
            height:0px !important;
+           overflow:hidden;
+           padding:0px !important;
+           pointer-events: none;
        }
        overflow:hidden;
        width:calc(100% - 10px);

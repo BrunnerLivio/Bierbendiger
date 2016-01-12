@@ -35,7 +35,7 @@
                         <label>Durchfüehrigsort</label>
                         <input ng-model="newTodoEntry.Destination" ng-blur="searchLocation(newTodoEntry.Destination)" type="text" name="destination" />
                     </md-input-container>
-                    <div class="map {{map.visibility ? '': 'hidden'}}">
+                    <div class="map {{map.visibility ? '': 'hidden'}}" flex>
                         <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                             <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
                         </ui-gmap-google-map>
