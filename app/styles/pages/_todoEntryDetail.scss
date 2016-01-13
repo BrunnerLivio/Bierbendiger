@@ -2,6 +2,10 @@
     .content{
         margin-top:10px;
         min-height:500px;
+         @include respond-to(sm){
+            margin-bottom:0px;
+            margin-top:0px;
+        }
     }    
     .header{
         height:100px;

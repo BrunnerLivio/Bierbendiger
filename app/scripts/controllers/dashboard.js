@@ -16,7 +16,8 @@ angular.module('bierbendigerApp')
     $rootScope.$routeParams = $routeParams;
     
     
-    $scope.$watch(function() { return $mdMedia('sm'); }, function(sm) {
+    $scope.$watch(function() { return $mdMedia('xs'); }, function(sm) {
+        console.log(sm);
         if(sm){
             $scope.dashboardView = "views/templates/dashboard/dashboard-mobile.html";
         } else {

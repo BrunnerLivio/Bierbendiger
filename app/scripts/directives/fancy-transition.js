@@ -61,7 +61,7 @@ angular.module('bierbendigerApp')
                         $includeElement.remove();
                         $fancyTransition.removeClass("fullscreen");
                         $fancyTransition.css("top", lastTopPosition);
-                        $(".container").css({"overflow":"auto", "height": "auto"});
+                        $(".container").css({"overflow":"initial", "height": "auto"});
                         window.setTimeout(function(){
                             $fancyTransition.remove();
                             element.children().fadeIn();

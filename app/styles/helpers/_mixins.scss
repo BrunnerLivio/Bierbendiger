@@ -22,7 +22,7 @@
 }
 
 /// Computes a bottom-shadow for a card effect.
-/// @param {Number} $depth - depth level
+/// @param {Number} $depth - depthi level
 /// @return {List}
 @function bottom-shadow($depth) {
   $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
