@@ -101,9 +101,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-      /*<RELEASE>
       $locationProvider.html5Mode(true);
-      </RELEASE>*/
   })
   .run(function($rootScope, auth, $location, $http){
       $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
