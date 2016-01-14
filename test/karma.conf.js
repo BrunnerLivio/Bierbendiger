@@ -37,6 +37,7 @@ module.exports = function(config) {
       'bower_components/angular-google-maps/dist/angular-google-maps.js',
       'bower_components/angular-linq/angular-linq.js',
       'bower_components/ng-file-upload/ng-file-upload.js',
+      'bower_components/moment/moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -1,3 +1,4 @@
+/* global moment */
 'use strict';
 
 /**
@@ -22,7 +23,10 @@ angular
     'angular-linq',
     'ngFileUpload'
   ])
-  .config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
+  .config(function ($routeProvider, $locationProvider, $mdThemingProvider, $mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function(date) {
+       return moment(date).format('DD.MM.YYYY');
+    };
     $mdThemingProvider.theme('default')
     .primaryPalette('indigo', {
       'default': '400', 
