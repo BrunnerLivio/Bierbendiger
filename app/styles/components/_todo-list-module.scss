@@ -4,8 +4,22 @@ todo-list-module{
     display:block;
     md-list{
         md-list-item{
+           
+            h2{
+                margin-bottom:5px !important;
+                overflow:hidden;
+            }
             p.Message{
                 white-space: pre-wrap;
+                word-break:break-word; 
+                
+                margin-top:0px;
+                @include respond-to(sm){
+                    line-height: 20px;   
+                    max-height:40px;
+                    overflow:hidden;
+                }
+                line-height: 25px;
             }
         }
     }

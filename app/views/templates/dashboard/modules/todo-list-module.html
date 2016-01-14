@@ -11,9 +11,9 @@
     <md-list>
         <md-list-item ng-repeat="entry in entries | orderBy:'-CreationDate'" fancy-transition="entry.IsOpen" ng-click="openEntry(entry)" fancy-transition-background="white" fancy-transition-include="'views/templates/dashboard/todoEntry-detail.html'">
             <img layout="column" alt="{{ entry.user.Username }}" ng-src="{{ 'api/images/profilepictures/' + entry.user.Profilepicture }}" class="md-avatar" />
-            <div layout="column">
+            <div layout="column" flex>
                 <h2 ng-bind="entry.Title" layout="row" ></h2>
-                <p ng-bind="entry.Message" layout="row" class="Message"></p>
+                <p ng-bind="entry.Message" layout="row" class="Message" flex></p>
             </div>
             <md-divider inset></md-divider>
         </md-list-item>

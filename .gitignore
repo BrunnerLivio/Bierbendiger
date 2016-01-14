@@ -6,5 +6,5 @@
 /.vscode
 /typings
 /bierbendiger.sql
-/api/app.json
-/api/images
+/app/api/app.json
+/app/api/images

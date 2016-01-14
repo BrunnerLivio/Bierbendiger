@@ -5,8 +5,8 @@
                 <h1 ng-bind="selectedEntry.Title" layout-margin flex></h1>
             </md-toolbar>
             <finish-button finished="{{selectedEntry.Finished}}"></finish-button>  
-            <md-content flex layout-padding>
-                <p ng-bind="selectedEntry.Message"></p>
+            <md-content flex layout-padding class="entryContainer">
+                <p ng-bind="selectedEntry.Message" class="entryMessage"></p>
             </md-content>
         </md-content>
     </md-whiteframe>
