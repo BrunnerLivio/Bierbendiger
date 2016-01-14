@@ -17,7 +17,10 @@ angular.module('bierbendigerApp')
                 var $fancyTransition = $(".fancy-transition");
                 if(value){
                     $(".container").css("overflow", "hidden");
+                    console.log(element.children());
                     element.children().fadeOut().promise().done(function() {
+                        element.children().show();
+                        element.children().css("visibility", "hidden");   
                         var $newElement = $("<div></div>");
                         var background;
                         if(attributes.fancyTransitionBackground == undefined){
@@ -28,8 +31,8 @@ angular.module('bierbendigerApp')
                         }
                         $newElement.css({
                             "background-color": background,
-                            "width": element.css("width"),
-                            "height": element.css("height"),
+                            "width": element.width() + "px",
+                            "height": element.height() +"px",
                             "left" : element.offset().left + "px",
                             "top": element.offset().top + "px",
                         });
@@ -51,7 +54,7 @@ angular.module('bierbendigerApp')
                                     $(".container").css({"height": "0px"});
                                     $newElement.css("top","0px");
                                 }, 20);
-                            }, 500);
+                            }, 300);
                         }, 20); 
                     });
                 } else if(!value && $fancyTransition.length > 0){
@@ -65,8 +68,8 @@ angular.module('bierbendigerApp')
                         window.setTimeout(function(){
                             $fancyTransition.remove();
                             element.children().fadeIn();
-                        }, 500);
-                    },500);
+                        }, 300);
+                    },300);
                 }
                 
             });
