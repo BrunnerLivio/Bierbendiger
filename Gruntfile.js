@@ -148,6 +148,8 @@ module.exports = function (grunt) {
                     open: true,
                     middleware: function (connect) {
                         return [
+                            modRewrite,
+                            require('connect-livereload')(),
                             connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',

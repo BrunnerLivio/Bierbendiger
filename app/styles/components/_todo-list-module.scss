@@ -4,23 +4,63 @@ todo-list-module{
     display:block;
     md-list{
         md-list-item{
-           
-            h2{
-                margin-bottom:5px !important;
-                overflow:hidden;
+           .voteBar{
+               margin-right:10px;
+               .score{
+                   margin-bottom:5px;
+                   margin-left:5px;
+               }
+               .vote{
+                   
+               }
+               .upVote{
+                   margin-bottom:5px;
+                   margin-top:10px;
+                   &.active{
+                    color:$md-orange-300;
+                   }
+               }
+               .downVote{
+                   margin-bottom:10px;
+                   &.active{
+                    color:$md-indigo-300;
+                   }
+               }
+           }
+            
+            .profilepicture{
+                margin:auto;
             }
-            p.Message{
-                white-space: pre-wrap;
-                word-break:break-word; 
-                
-                margin-top:0px;
-                @include respond-to(sm){
-                    line-height: 20px;   
-                    max-height:40px;
-                    overflow:hidden;
+            .entryContent{
+                margin-left:10px;
+                .topLeftInfo{
+                    color:$md-grey-600;
+                    @include respond-to(sm){
+                        font-size:11px;
+                    }
                 }
-                line-height: 25px;
+                .entryMessage{
+                    white-space: pre-wrap;
+                    word-break:break-word; 
+                    color:$md-grey-800;
+                    margin-top:0px;
+                    @include respond-to(sm){
+                        line-height: 20px;   
+                        max-height:40px;
+                        overflow:hidden;
+                        font-size:15px;
+                    }
+                    line-height: 25px;
+                }
+                .entryTitle{
+                    margin-bottom:5px !important;
+                    overflow:hidden;
+                    @include respond-to(sm){
+                        font-size:19px;
+                    }
+                }
             }
+            
         }
     }
 }

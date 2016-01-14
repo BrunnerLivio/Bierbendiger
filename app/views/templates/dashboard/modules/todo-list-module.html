@@ -1,4 +1,4 @@
- <md-toolbar fancy-transition="triggerTransition" fancy-transition-include="'views/templates/dashboard/newTodoEntry.html'">
+<md-toolbar fancy-transition="triggerTransition" fancy-transition-include="'views/templates/dashboard/newTodoEntry.html'">
     <div class="md-toolbar-tools">
         <md-button flex ng-click="openNewEntryModal()">
             <md-icon md-svg-src="images/icons/add186.svg"></md-icon>
@@ -9,13 +9,38 @@
 <md-content layout-padding>
     <md-progress-linear md-mode="indeterminate" ng-visible="entries == null" flex></md-progress-linear>
     <md-list>
-        <md-list-item ng-repeat="entry in entries | orderBy:'-CreationDate'" fancy-transition="entry.IsOpen" ng-click="openEntry(entry)" fancy-transition-background="white" fancy-transition-include="'views/templates/dashboard/todoEntry-detail.html'">
-            <img layout="column" alt="{{ entry.user.Username }}" ng-src="{{ 'api/images/profilepictures/' + entry.user.Profilepicture }}" class="md-avatar" />
-            <div layout="column" flex>
-                <h2 ng-bind="entry.Title" layout="row" ></h2>
-                <p ng-bind="entry.Message" layout="row" class="Message" flex></p>
+        <md-list-item ng-repeat="entry in entries | orderBy:'-CreationDate'" fancy-transition="entry.IsOpen" fancy-transition-background="white"
+        fancy-transition-include="'views/templates/dashboard/todoEntry-detail.html'">
+            <div layout="column" class="voteBar">
+                <md-icon md-svg-src="images/icons/drink24.svg" layout="row" class="upVote active vote"></md-icon>
+                <span layout="row" class="score">4</span>
+                <md-icon md-svg-src="images/icons/middle4.svg" layout="row" class="downVote vote"></md-icon>
             </div>
-            <md-divider inset></md-divider>
+            <div layout="column" ng-click="openEntry(entry)" flex>
+                <div layout="row" flex>
+                    <div layout="column">
+                        <img layout-align="center center" alt="{{ entry.user.Username }}" ng-src="{{ 'api/images/profilepictures/' + entry.user.Profilepicture }}"
+                        class="profilepicture md-avatar" />
+                    </div>
+                    <div layout="column" class="entryContent" flex>
+                        <div flex layout="row">
+                            <h2 ng-bind="entry.Title" layout="row" layout="column" flex class="entryTitle"></h2>
+                            <div layout="column" layout-margin>
+                                <div layout="row" flex class="topLeftInfo">
+                                    <span class="entryDestination" ng-bind="entry.Destination"></span>
+                                    <span ng-show="entry.Destination">, </span>
+                                    <span class="entryDate" ng-bind="entry.CreationDate | date:'dd.MM.yyyy'"></span>
+                                    
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        <p ng-bind="entry.Message" layout="row" class="entryMessage" flex></p>
+                        <md-divider inset></md-divider>
+                    </div>
+                </div>
+            </div>
         </md-list-item>
     </md-list>
 </md-content>
