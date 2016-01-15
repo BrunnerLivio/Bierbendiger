@@ -44,6 +44,14 @@ angular.module('bierbendigerApp')
                 $rootScope.$on('todoEntriesUpdated', function () {
                     updateTodoEntries();
                 });
+                $scope.vote = function(upVote, entry){
+                    entry.Karma = upVote ? ++entry.Karma : --entry.Karma;
+                    console.log(upVote);
+                    entry.HasUserUpVoted = upVote;
+                    BierbendigerService.voteTodoEntry(upVote, entry.Id).success(function(){
+                        
+                    });
+                }
                 updateTodoEntries();
             }
         };

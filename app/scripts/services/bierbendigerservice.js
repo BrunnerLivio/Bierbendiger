@@ -8,7 +8,7 @@
  * Factory in the bierbendigerApp.
  */
 angular.module('bierbendigerApp')
-  .factory('BierbendigerService', function ($q, $http, apiAddress, auth, $mdToast, $rootScope, Upload) {
+  .factory('BierbendigerService', function ($q, $http, apiAddress, auth, $mdToast, $rootScope, Upload, $linq) {
     var address = apiAddress.bierbendiger.address;
     function errorMessage(){
         $mdToast.showSimple("Es hed en Fehler geh bim Absende. Danke, Livio.");
@@ -46,6 +46,21 @@ angular.module('bierbendigerApp')
             evalDateOfTodoEntries();
             deferred.resolve(cache.todoEntries);
         }
+        return deferred.promise;
+      },
+      voteTodoEntry :function(upvote, todoEntryId){
+        var deferred = $q.defer();
+        return $http({
+            method: "POST",
+            url: address + "todoentry/vote",
+            data:{
+                "UpVoted": upvote,
+                "TodoEntryId": todoEntryId
+            },
+            headers: {
+                'Authorization': auth.getUser().Token.Value
+            }
+        });
         return deferred.promise;
       },
       saveTodoEntry :function(entry){
