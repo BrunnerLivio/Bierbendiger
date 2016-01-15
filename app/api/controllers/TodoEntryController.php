@@ -7,10 +7,31 @@ class TodoEntryController extends Controller {
 		$this->Route( 'GET', '', function() {
             if(AuthRepository::Autherize()){
                 $todoEntryRepository = new TodoEntryRepository;
+                $voteRepository = new VoteRepository;
                 $entries = $todoEntryRepository->LoadAll([
                     ["CreatorUserId" => "user"],
                     ["ProofPhotoId" => "media"]
                 ]);
+                $counter = 0;
+                while($counter < count($entries)){
+                    $votes = $voteRepository->LoadWhere("TodoEntryId = ".$entries[$counter]["Id"]);
+                    $voteCounter = 0;
+                    $downVoteCounter = 0;
+                    $hasUserVote = false;
+                    foreach($votes as $vote){
+                        if($vote["UpVote"] == "1"){
+                            $voteCounter++;
+                        } else {
+                            $voteCounter;
+                        }
+                        if($vote["UserId"] == AuthRepository::GetUserId()){
+                            $hasUserVote = true;
+                        }
+                    }
+                    $entries[$counter]["Karma"] = $voteCounter;
+                    $entries[$counter]["HasUserVoted"] = $hasUserVote;
+                    $counter++;
+                }
                 $this->Send($entries);
             }
 		});
