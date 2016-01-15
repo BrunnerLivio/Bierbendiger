@@ -24,6 +24,9 @@ angular.module('bierbendigerApp')
         });
     }
     var cache = {};
+    $rootScope.$on('clearCache', function () {
+        cache = {};
+    });
     return {
       getTodoEntries: function () {
         var deferred = $q.defer();
@@ -77,6 +80,7 @@ angular.module('bierbendigerApp')
                 if(cache.todoEntries == undefined){
                     cache.todoEntries = [];
                 }
+                data.Record.Karma = 0;
                 cache.todoEntries.push(data.Record);
                 $rootScope.$broadcast('todoEntriesUpdated');
             }

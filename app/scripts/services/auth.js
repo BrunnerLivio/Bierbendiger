@@ -8,7 +8,7 @@
  * Service in the bierbendigerApp.
  */
 angular.module('bierbendigerApp')
-  .factory('auth', function (apiAddress, $http, $cookies, $q) {
+  .factory('auth', function (apiAddress, $http, $cookies, $q, $rootScope) {
     var user;
     function login(username, password){
       var deferred = $q.defer();
@@ -47,6 +47,7 @@ angular.module('bierbendigerApp')
     function logout(){
         user = undefined;
         $cookies.remove("user");
+        $rootScope.$broadcast("clearCache");
     }
     return {
       login: login,
