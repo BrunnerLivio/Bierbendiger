@@ -13,7 +13,7 @@
         fancy-transition-include="'views/templates/dashboard/todoEntry-detail.html'">
             <div layout="column" class="voteBar">
                 <md-icon md-svg-src="images/icons/drink24.svg" layout="row" class="upVote active vote"></md-icon>
-                <span layout="row" class="score">4</span>
+                <span layout="row" class="score" ng-bind="entry.Karma"></span>
                 <md-icon md-svg-src="images/icons/middle4.svg" layout="row" class="downVote vote"></md-icon>
             </div>
             <div layout="column" ng-click="openEntry(entry)" flex>
