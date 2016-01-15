@@ -47,10 +47,12 @@ angular.module('bierbendigerApp')
                 $scope.vote = function(upVote, entry){
                     if(entry.HasUserUpVoted == false && upVote){
                         entry.Karma += 2;
-                    } else if(entry.HasUserUpVoted == true && !upVote){
+                    } else if(entry.HasUserUpVoted && !upVote){
                         entry.Karma -= 2;
                     } else if(entry.HasUserUpVoted == null && upVote){
                         entry.Karma++;
+                    } else if(entry.HasUserUpVoted == null && !upVote){
+                        entry.Karma--;
                     }
                     entry.HasUserUpVoted = upVote;
                     BierbendigerService.voteTodoEntry(upVote, entry.Id).success(function(){
