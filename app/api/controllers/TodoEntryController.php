@@ -38,6 +38,22 @@ class TodoEntryController extends Controller {
                 $this->Send($entries);
             }
 		});
+        $this->Route('POST', '/delete', function(){
+            $request = $this->GetRequestData();
+            if(AuthRepository::Autherize()){
+                if(isset($request->entryId)){
+                    $todoEntryRepository = new TodoEntryRepository;
+                    $todoEntryRepository->Delete($request->entryId);
+                    $this->Send([
+                        "Status" => $todoEntryRepository->GetQueryError() == "", 
+                        "Error" => $todoEntryRepository->GetQueryError(), 
+                    ]);  
+                } else {
+                    $this->NotFound();
+                    
+                }
+            }
+        });
         $this->Route('POST', '/create',function(){
             $request = $this->GetRequestData();
             if(AuthRepository::Autherize()){

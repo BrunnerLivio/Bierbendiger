@@ -94,7 +94,7 @@ angular.module('bierbendigerApp')
       deleteTodoEntry:function(entryId){
           var deferred = $q.defer();
             $http({
-                method: "DELETE",
+                method: "POST",
                 url: address + "todoentry/delete",
                 data:{"entryId": entryId},
                 headers: {
@@ -105,10 +105,10 @@ angular.module('bierbendigerApp')
                     if(cache.todoEntries == undefined){
                         cache.todoEntries = [];
                     }
-                    var entry = $linq.Enumerable.From(cache.todoEntries)
+                    var entry = $linq.Enumerable().From(cache.todoEntries)
                         .Where(function(x){
                             return x.Id == entryId;
-                        });
+                        }).First();
                     cache.todoEntries.splice(cache.todoEntries.indexOf(entry), 1);
                     $rootScope.$broadcast('todoEntriesUpdated');
                 }
