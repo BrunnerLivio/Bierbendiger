@@ -12,9 +12,9 @@
         <md-list-item ng-repeat="entry in entries | orderBy:'-CreationDate'" fancy-transition="entry.IsOpen" fancy-transition-background="white"
         fancy-transition-include="'views/templates/dashboard/todoEntry-detail.html'">
             <div layout="column" class="voteBar">
-                <md-icon md-svg-src="images/icons/drink24.svg" layout="row" class="upVote active vote"></md-icon>
+                <md-icon md-svg-src="images/icons/drink24.svg" layout="row" class="upVote vote" ng-class="{'active': entry.HasUserUpVoted}"></md-icon>
                 <span layout="row" class="score" ng-bind="entry.Karma"></span>
-                <md-icon md-svg-src="images/icons/middle4.svg" layout="row" class="downVote vote"></md-icon>
+                <md-icon md-svg-src="images/icons/middle4.svg" layout="row" class="downVote vote" ng-class="{'active': entry.HasUserUpVoted == false)}"></md-icon>
             </div>
             <div layout="column" ng-click="openEntry(entry)" flex>
                 <div layout="row" flex>
