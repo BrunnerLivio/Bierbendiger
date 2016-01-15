@@ -7,21 +7,17 @@ todo-list-module{
            .voteBar{
                margin-right:10px;
                .score{
-                   margin-bottom:5px;
-                   margin-left:5px;
+                   margin:auto;
                }
                .vote{
-                   cursor:pointer;
+                   min-width:10px !important;
                }
                .upVote{
-                   margin-bottom:5px;
-                   margin-top:10px;
                    &.active{
                     color:$md-orange-300;
                    }
                }
                .downVote{
-                   margin-bottom:10px;
                    &.active{
                     color:$md-indigo-300;
                    }

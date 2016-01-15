@@ -45,8 +45,13 @@ angular.module('bierbendigerApp')
                     updateTodoEntries();
                 });
                 $scope.vote = function(upVote, entry){
-                    entry.Karma = upVote ? ++entry.Karma : --entry.Karma;
-                    console.log(upVote);
+                    if(entry.HasUserUpVoted == false && upVote){
+                        entry.Karma += 2;
+                    } else if(entry.HasUserUpVoted == true && !upVote){
+                        entry.Karma -= 2;
+                    } else if(entry.HasUserUpVoted == null && upVote){
+                        entry.Karma++;
+                    }
                     entry.HasUserUpVoted = upVote;
                     BierbendigerService.voteTodoEntry(upVote, entry.Id).success(function(){
                         
