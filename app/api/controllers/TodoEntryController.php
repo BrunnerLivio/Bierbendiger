@@ -17,7 +17,7 @@ class TodoEntryController extends Controller {
                     $votes = $voteRepository->LoadWhere("TodoEntryId = ".$entries[$counter]["Id"]);
                     $voteCounter = 0;
                     $downVoteCounter = 0;
-                    $hasUserVote = false;
+                    $hasUserUpVoted = null;
                     foreach($votes as $vote){
                         if($vote["UpVote"] == "1"){
                             $voteCounter++;
@@ -25,11 +25,14 @@ class TodoEntryController extends Controller {
                             $voteCounter;
                         }
                         if($vote["UserId"] == AuthRepository::GetUserId()){
-                            $hasUserVote = true;
+                            $hasUserUpVoted = $vote["UpVote"] == "1";
                         }
                     }
                     $entries[$counter]["Karma"] = $voteCounter;
-                    $entries[$counter]["HasUserVoted"] = $hasUserVote;
+                    //null = not votet
+                    //true = upvoted
+                    //false = downvoted
+                    $entries[$counter]["HasUserUpVoted"] = $hasUserUpVoted;
                     $counter++;
                 }
                 $this->Send($entries);
