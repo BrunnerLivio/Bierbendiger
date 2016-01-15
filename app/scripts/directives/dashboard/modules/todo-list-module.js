@@ -15,7 +15,7 @@ angular.module('bierbendigerApp')
             link: function postLink(scope, element, attrs) {
 
             },
-            controller: function (BierbendigerService, $scope, $rootScope, $linq, $location) {
+            controller: function (BierbendigerService, $scope, $rootScope, $linq, $location, $mdDialog, auth) {
 
                 function updateTodoEntries() {
                     BierbendigerService.getTodoEntries().then(function (entries) {
@@ -44,21 +44,25 @@ angular.module('bierbendigerApp')
                 $rootScope.$on('todoEntriesUpdated', function () {
                     updateTodoEntries();
                 });
-                $scope.vote = function(upVote, entry){
-                    if(entry.HasUserUpVoted == false && upVote){
+                $scope.currentUsername = auth.getUser().Username;
+                $scope.vote = function (upVote, entry) {
+                    if (entry.HasUserUpVoted == false && upVote) {
                         entry.Karma += 2;
-                    } else if(entry.HasUserUpVoted && !upVote){
+                    } else if (entry.HasUserUpVoted && !upVote) {
                         entry.Karma -= 2;
-                    } else if(entry.HasUserUpVoted == null && upVote){
+                    } else if (entry.HasUserUpVoted == null && upVote) {
                         entry.Karma++;
-                    } else if(entry.HasUserUpVoted == null && !upVote){
+                    } else if (entry.HasUserUpVoted == null && !upVote) {
                         entry.Karma--;
                     }
                     entry.HasUserUpVoted = upVote;
-                    BierbendigerService.voteTodoEntry(upVote, entry.Id).success(function(){
-                        
+                    BierbendigerService.voteTodoEntry(upVote, entry.Id).success(function () {
+
                     });
                 }
+                $scope.openEntryMenu = function ($mdOpenMenu, ev) {
+                    $mdOpenMenu(ev);
+                };
                 updateTodoEntries();
             }
         };

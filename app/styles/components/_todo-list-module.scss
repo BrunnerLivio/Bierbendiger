@@ -15,9 +15,21 @@ todo-list-module{
            .voteBar{
                .score{
                    margin:auto;
+                   @include respond-to(sm){
+                        font-size:12px;
+                    }
                }
                .vote{
                    min-width:10px !important;
+                    @include respond-to(sm){
+                        padding:0;   
+                    }
+                   md-icon{
+                       @include respond-to(sm){
+                            width:18px;
+                       }
+                   }
+                   
                }
                .upVote{
                    &.active{
@@ -32,6 +44,10 @@ todo-list-module{
            }
             .profilepicture{
                 margin:auto;
+                 @include respond-to(sm){
+                    width:32px;
+                    height:32spx;
+                }
             }
             .entryContent{
                 margin-left:10px;
@@ -63,7 +79,34 @@ todo-list-module{
                     }
                 }
             }
+            .deleteEntryColumn{
+                width:20px;
+                .md-button{ 
+                    width:20px;
+                    margin:0 !important;
+                    padding:0 !important;
+                }
+                md-icon{
+                    width:14px;
+                }
+            }
             
+        }
+    }
+}
+.entryOptions{
+    .entryOption{
+        max-height:20px !important;
+        md-icon{
+            width:10px;
+           
+        }
+        font-size:12px;
+        &.deleteEntry{
+            color:$md-red-800;
+            md-icon{
+                 color:$md-red-800;
+            }
         }
     }
 }

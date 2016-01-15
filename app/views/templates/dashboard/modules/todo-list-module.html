@@ -34,16 +34,35 @@
                                     <span class="entryDestination" ng-bind="entry.Destination"></span>
                                     <span ng-show="entry.Destination">, </span>
                                     <span class="entryDate" ng-bind="entry.CreationDate | date:'dd.MM.yyyy'"></span>
-                                    
-                                </div>
-                                
-                            </div>
 
+                                </div>
+                            </div>
                         </div>
                         <p ng-bind="entry.Message" layout="row" class="entryMessage" flex></p>
                         <md-divider inset></md-divider>
                     </div>
                 </div>
+            </div>
+            <div class="deleteEntryColumn" layout="column" layout-align="start start" ng-show="entry.user.Username == currentUsername">
+                <md-menu md-position-mode="target-right target">
+                    <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openEntryMenu($mdOpenMenu, $event)">
+                        <md-icon md-menu-origin md-svg-src="images/icons/ellipsis1.svg"></md-icon>
+                    </md-button>
+                    <md-menu-content width="2" class="entryOptions">
+                        <md-menu-item>
+                            <md-button ng-click="editEntry(entry)" class="entryOption">
+                                <md-icon md-svg-src="images/icons/underline6.svg" md-menu-align-target></md-icon>
+                                Bearbeite
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="deleteEntry(entry)" class="entryOption deleteEntry">
+                                <md-icon md-svg-src="images/icons/clear5.svg" md-menu-align-target></md-icon>
+                                Lösche
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
             </div>
         </md-list-item>
     </md-list>
