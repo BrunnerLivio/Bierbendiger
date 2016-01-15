@@ -22,7 +22,7 @@ class TodoEntryController extends Controller {
                         if($vote["UpVote"] == "1"){
                             $voteCounter++;
                         } else {
-                            $voteCounter;
+                            $voteCounter--;
                         }
                         if($vote["UserId"] == AuthRepository::GetUserId()){
                             $hasUserUpVoted = $vote["UpVote"] == "1";
