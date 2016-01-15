@@ -45,6 +45,21 @@ angular.module('bierbendigerApp')
                     updateTodoEntries();
                 });
                 $scope.currentUsername = auth.getUser().Username;
+                $scope.deleteEntry = function(entry, ev){
+                    var confirm = $mdDialog.show(
+                        $mdDialog.confirm()
+                        .clickOutsideToClose(true)
+                        .title('Wetsch de Bitrag würkli lösche?')
+                        .textContent('Du bisch en faggot, lösch de Bitrag, niemert will dini Meinig du fag')                        
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Ok, Senpai ich löschs!')
+                        .cancel('Na bratte ich palts!')
+                        .targetEvent(ev)
+                    );
+                    $mdDialog.show(confirm).then(function() {
+                        BierbendigerService.deleteTodoEntry(entry.Id);
+                    });
+                }
                 $scope.vote = function (upVote, entry) {
                     if (entry.HasUserUpVoted == false && upVote) {
                         entry.Karma += 2;

@@ -91,6 +91,34 @@ angular.module('bierbendigerApp')
         });
         return deferred.promise;
       },
+      deleteTodoEntry:function(entryId){
+          var deferred = $q.defer();
+            $http({
+                method: "DELETE",
+                url: address + "todoentry/delete",
+                data:{"entryId": entryId},
+                headers: {
+                    'Authorization': auth.getUser().Token.Value
+                }
+            }).success(function(data){
+                if(data.Status){
+                    if(cache.todoEntries == undefined){
+                        cache.todoEntries = [];
+                    }
+                    var entry = $linq.Enumerable.From(cache.todoEntries)
+                        .Where(function(x){
+                            return x.Id == entryId;
+                        });
+                    cache.todoEntries.splice(cache.todoEntries.indexOf(entry), 1);
+                    $rootScope.$broadcast('todoEntriesUpdated');
+                }
+                deferred.resolve(data);
+            }).error(function(data){
+                deferred.reject();
+                errorMessage();
+            });
+            return deferred.promise;
+      },
       finishTodoEntry:function(data){
           var deferred = $q.defer();
           console.log(data);
