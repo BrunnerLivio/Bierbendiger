@@ -39,10 +39,10 @@ class TodoEntryController extends Controller {
             }
 		});
         $this->Route('POST', '/create',function(){
-            $todoEntryRepository = new TodoEntryRepository;
             $request = $this->GetRequestData();
             if(AuthRepository::Autherize()){
                 if(isset($request->Title)){
+                    $todoEntryRepository = new TodoEntryRepository;
                     $callback = $todoEntryRepository->Save(array(
                         "Title" => isset($request->Title) ? $request->Title : NULL,
                         "Message" => isset($request->Message) ? $request->Message : NULL,
@@ -67,6 +67,30 @@ class TodoEntryController extends Controller {
                     $this->NotFound();
                 }
             }        
+        });
+        $this->Route('POST', '/vote', function(){
+             if(AuthRepository::Autherize()){
+                $request = $this->GetRequestData();
+                if(isset($request->UpVoted) && isset($request->TodoEntryId)){
+                    $voteRepository = new VoteRepository;
+                    if(count($voteRepository->LoadWhere("UserId = ". AuthRepository::GetUserId()." AND TodoEntryId = ".$request->TodoEntryId)) > 0){
+                        $voteRepository->UpdateWhere("UserId = ". AuthRepository::GetUserId()." AND TodoEntryId = ".$request->TodoEntryId,
+                                                     ["UpVote" => $request->UpVoted]);
+                    } else {
+                        $voteRepository->Save([
+                            "UpVote" => $request->UpVoted,
+                            "TodoEntryId" => $request->TodoEntryId,
+                            "UserId" => AuthRepository::GetUserId()
+                        ]);
+                    }
+                    $this->Send([
+                        "Status" => $voteRepository->GetQueryError() == "", 
+                        "Error" => $voteRepository->GetQueryError(), 
+                    ]);                
+                } else {
+                    $this->NotFound();
+                }
+            }     
         });
         $this->Route('POST', '/finish', function(){
              if(AuthRepository::Autherize()){
