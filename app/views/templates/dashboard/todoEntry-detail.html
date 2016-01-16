@@ -2,7 +2,11 @@
     <md-whiteframe class="md-whiteframe-1dp content" layout flex>
         <md-content flex>
             <md-toolbar class="md-primary header" layout="row">
-                <h1 ng-bind="selectedEntry.Title" layout-margin flex></h1>
+                <h3 ng-bind="selectedEntry.Title" layout-margin flex></h1>
+                <md-button ng-click="close()">
+                    <md-tooltip>Schliessen</md-tooltip>
+                    <md-icon md-svg-icon="images/icons/close47.svg"></md-icon>
+                </md-button>
             </md-toolbar>
             <finish-button finished="{{selectedEntry.Finished}}"></finish-button>  
             <md-content flex layout-padding class="entryContainer">
