@@ -8,7 +8,7 @@
  * Controller of the bierbendigerApp
  */
 angular.module('bierbendigerApp')
-  .controller('MainCtrl', function ($scope, $mdDialog, $mdMedia, $location, auth, $mdToast) {
+  .controller('MainCtrl', function ($scope, $mdDialog, $mdMedia, $location, auth, $mdToast, BierbendigerService) {
     $scope.viewId="MainCtrl";
     $scope.user = {};
     $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
@@ -44,10 +44,18 @@ angular.module('bierbendigerApp')
        }
        
     }
+    BierbendigerService.getUserCount().then(function(UserCount){
+        $scope.UserCount = UserCount.amount; 
+    });
+    BierbendigerService.getUsers().then(function(users){
+        console.log(users);
+        $scope.users = users.data; 
+    });
    $scope.$on("$destroy", function(){
      if(loginDialog != null) $mdDialog.hide( loginDialog, "finished" );
     });
     $scope.redirect = function(path){
       $location.path(path);
     }
+    $scope.todaysYear = new Date().getFullYear();
   });

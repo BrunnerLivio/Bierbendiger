@@ -14,7 +14,7 @@ angular.module('bierbendigerApp')
     $scope.triggerTransition = createTodoEntry;
     
     $rootScope.$routeParams = $routeParams;
-    
+    console.log($rootScope.$routeParams);
     
     $scope.$watch(function() { return $mdMedia('xs'); }, function(sm) {
         console.log(sm);
@@ -29,3 +29,4 @@ angular.module('bierbendigerApp')
         $location.path("/dashboard/create-todoentry");
     };
   });
+

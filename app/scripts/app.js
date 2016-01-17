@@ -98,6 +98,20 @@ angular
             }
           }
       })
+      .when('/dashboard/todoentry/edit/:todoEditId', {
+          templateUrl: 'views/dashboard.html',
+          controller: 'DashboardCtrl',
+          controllerAs:'dashboard',
+          requiresLogin:true,
+          resolve: {
+              createTodoEntry:function(){
+                return true;
+              },
+              todoEntryDetail:function(){
+                  return false;
+              }
+          }
+      })
       .otherwise({
         redirectTo: '/'
       });

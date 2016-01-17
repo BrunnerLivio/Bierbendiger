@@ -20,6 +20,10 @@ class PublicController extends Controller {
             $number = count($userRepository->LoadAll());
             $this->Send(array("amount"=> $number));
         });
+        $this->Route('GET', '/users', function(){
+            $userRepository = new UserRepository;
+            $this->Send($userRepository->LoadAll());
+        });
 	}
 }
 ?>

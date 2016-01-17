@@ -1,0 +1,17 @@
+<md-button class="reload" ng-click="reload()">
+    <md-icon md-svg-src="images/icons/reload.svg"></md-icon>
+    <md-tooltip>
+        Neus Lade
+    </md-tooltip>
+</md-button>
+<div class="quoteBox">
+    <div class="preText">
+        En random Information folgt:
+    </div>
+    <div class="message">
+        <span ng-bind="messageOfTheDay.Message"></span>
+    </div>
+    <div class="author">
+        <span ng-bind="messageOfTheDay.user.Username"></span>
+    </div>
+</div>

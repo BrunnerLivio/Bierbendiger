@@ -1,5 +1,4 @@
 #MainCtrl{
-	height:2000px;
 	bierbendiger-big-header{
 		 .content{
 			z-index:2;
@@ -58,23 +57,116 @@
 		position:relative;
 		z-index:3;
 		.container{
-			h1{
-				font-size:60px;
+            padding-bottom:30px;
+			color:$md-grey-500;
+            padding-top:30px;
+            @include respond-to(sm){
+                padding-bottom:20px;
+            }
+            .fancy-title{
+                font-family:'Open Sans', sans-serif;
+                font-weight: 300;
+				font-size:55px;
 				margin-top:10px;
 				margin-bottom:10px;
 				padding:7px;
+                -webkit-text-fill-color: transparent;
+                background-size: 100% 100%;
 				@include respond-to(sm){
 					font-size:30px;	
 				}
+                &#introductionTitle{
+                    background: linear-gradient(to right,$md-blue-a700 0%, $md-pink-a200 100%);                    
+                    -webkit-background-clip: text;
+                    
+                }
+                &#membersTitle{
+                    background: linear-gradient(to right,$md-red-a700 0%, $md-amber-400 100%);
+                    -webkit-background-clip: text;                    
+                }
 			}
 			p{
+                font-family:'Open Sans', sans-serif;
 				font-size:20px;
 				padding:7px;
+                line-height:30px;
+                font-weight:400;
 				@include respond-to(sm){
 					font-size:16px;
 				}
 			}
 		}
+        .quote{
+            background-image: url(/images/quotebackground.jpg);
+            width:100%;
+            height:700px;
+            background-size:cover;
+            background-position: center;
+            background-attachment: fixed;
+            box-shadow:inset 0 10px 20px rgba(0,0,0,0.15),inset 0 6px 6px rgba(0,0,0,0.19);
+            @include respond-to(sm){
+                height:400px;	
+            }
+        }
+        .footer{
+            position:relative;
+            min-height:400px;
+            background-color:$md-blue-grey-800;
+            color:white;
+            line-height:30px;
+            font-size:18px;
+            h3{
+                font-size:25px;
+                text-transform: uppercase;
+            }
+            a {
+                color:white;
+                text-decoration: none;
+                
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            ul{
+                margin-left:-40px;
+                li {
+                    list-style:none;
+                    
+                }
+            }
+            .logo{
+                .beerIcon{
+                    height:200px;
+                    width:200px;
+                    color:white;
+                    position:relative;
+                    left:50%;
+                    transform:translate(-50%);
+                    @include respond-to(sm){
+                        height:150px;
+                        width:150px	
+                    }
+                }
+            }
+            .help{
+                margin-bottom:30px;
+            }
+            
+        }
+        .copyright{
+            width:100%;
+            padding-top:10px;
+            padding-bottom:10px;
+            position:absolute;
+            bottom:0;
+            text-align:center;
+            color:$md-blue-grey-200;
+            font-size:14px;
+            background-color:$md-blue-grey-900;
+                @include respond-to(sm){
+                font-size:10px;	
+            }
+        }
 	}
 	
 }

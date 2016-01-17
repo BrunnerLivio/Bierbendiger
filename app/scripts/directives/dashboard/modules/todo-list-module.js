@@ -61,6 +61,9 @@ angular.module('bierbendigerApp')
                     }, function() {
                     });
                 }
+                $scope.editEntry = function(entry){
+                    $location.path("/dashboard/todoentry/edit/" + entry.Id);
+                }
                 $scope.vote = function (upVote, entry) {
                     if (entry.HasUserUpVoted == false && upVote) {
                         entry.Karma += 2;

@@ -1,26 +1,89 @@
 <bierbendiger-big-header>
-	<div class="content">
-		<h1>Bierbendiger</h1>
-		<h2>Bier isch liebi, Bier isch lebe</h2>
-		<div class="raisedButtons">
-			<md-button class="md-raised md-primary" ng-click="showLoginAlert()">
-				<md-icon md-svg-src="images/icons/login12.svg"></md-icon>
-				Login
-			</md-button>
-			<md-button class="md-raised md-primary" id="publicVersion" ng-click="redirect('public')">
-				<md-icon md-svg-src="images/icons/eyeball15.svg"></md-icon>
-				Öffentlichi Version
-			</md-button>
-		</div>
-		
-	</div>
+    <div class="content">
+        <h1>Bierbendiger</h1>
+        <h2>Bier isch liebi, Bier isch lebe</h2>
+        <div class="raisedButtons">
+            <md-button class="md-raised md-primary" ng-click="showLoginAlert()">
+                <md-icon md-svg-src="images/icons/login12.svg"></md-icon>
+                Login
+            </md-button>
+            <md-button class="md-raised md-primary" id="publicVersion" ng-click="redirect('public')">
+                <md-icon md-svg-src="images/icons/eyeball15.svg"></md-icon>
+                Öffentlichi Version
+            </md-button>
+        </div>
+
+    </div>
 </bierbendiger-big-header>
 <div class="content">
-	<div class="container" class="md-padding" flex="70" flex-offset="15" flex-offset-sm="0" flex-sm="100">
-		<h1>Me sind d'Bendiger vom füfte Element</h1>
-		<p>dolor sit amet, consectetur adipisicing elit. Voluptatem ut neque delectus nisi magni reprehenderit ipsam? Commodi consectetur labore illo, eos quisquam dolor eveniet doloremque! Quam cum libero aliquid, magni necessitatibus fugiat consequatur quos. Asperiores doloremque distinctio, dolorem autem deleniti.</p>
-	</div>
+    <div class="container" flex="70" flex-offset="15" flex-offset-xs="0" flex-xs="100" layout="row" layout-xs="column">
+        <div layout="column" flex>
+            <h2 class="fancy-title" id="introductionTitle">Bendiger vom füfte Element</h2>
+        </div>
+        <div layout="column" flex>
+            <p>Bierbendiger isch en Gruppe vo junge, entusiastische Lüt. Üse Fründeskreis, bestehend us <span ng-bind="UserCount"></span>                Persone trifft sich regelmässig im Usgang. Da mir scho vieles erlebt hend, hemmer denkt me wennd das mal
+                fescht palte, und all üsi Idee ufschriebe. Da en Informatiker i dere Gruppe isch wo mengisch chle zviel Zit
+                hed, hed er en Website drüber gmacht. (En Notizblock hetti au glänget).</p>
+            <p>Du, als langwilige, ned spezielle Nutzer, chasch bi üsere Gruppe kei Biträg mache. S'einzige was mache chasch
+                isch uf de üsi <a href="/public">öffentlichi Site</a> gah wo all Inhält druffe sind wo mir Freigeh hend.
+                Also die schlimme Sache sind dete ned dinne.</p>
+        </div>
+    </div>
+    <div class="container" flex="70" flex-offset="15" flex-offset-xs="0" flex-xs="100" layout="row" layout-xs="column">
+        <div layout="column" flex>
+            <h2 class="fancy-title" id="membersTitle">Mitglieder</h2>
+        </div>
+        <div layout="column" flex>
+            <div layout="column" flex>
+                <md-list>
+                    <md-list-item ng-repeat="user in users | orderBy: 'Username'">
+                        <img layout-align="center center" alt="{{ user.Username }}" ng-src="{{ 'api/images/profilepictures/' + user.Profilepicture }}"
+                        class="md-avatar" />
+
+                        <h3 ng-bind="user.Username"></h3>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </div>
+    </div>
+    <div class="quote">
+        <msg-of-the-day></msg-of-the-day>
+    </div>
+    <div class="footer" flex layout="column">
+        <div layout="row" layout-xs="column" flex layout-margin>
+            <div flex class="logo">
+                <md-icon md-svg-src="images/icons/drink24.svg" class="beerIcon"></md-icon>
+            </div>
+            <div flex>
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="/public">Öffentlichi Teil</a></li>
+                    <li><a href="https://github.com/BrunnerLivio/BierbendigerOfficial">Source Code</a></li>
+                </ul>
+            </div>
+            <div flex class="contact">
+                <h3>Kontakt</h3>
+                <div>
+                    <div class="line">
+                        Name: Livio Brunner
+                    </div>
+                    <div>
+                        Adresse: Hochwachtstrasse 45
+                    </div>
+                    <div>
+                        Email: <a href="mailto:livio.brunner@hotmail.com">livio.brunner@hotmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div flex class="help">
+                <h3>Help</h3>
+                <div>
+                    Es gid kei Hilf uf dere Site. Fy.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        Copyright Bierbendiger 2015-<span ng-bind="todaysYear"></span> | Design & Code by Livio Brunner
+    </div>
 </div>
-
-
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>

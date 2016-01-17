@@ -177,6 +177,18 @@ angular.module('bierbendigerApp')
             deferred.resolve(cache.userCount);
         }
         return deferred.promise;
+      },
+      getMessageOfTheDay:function(){
+          return $http({
+              method:"GET",
+              url: address + "public/entryoftheday"
+          })
+      },
+      getUsers:function(){
+          return $http({
+              method:"GET",
+              url: address + "public/users"
+          })
       }
     };
   });

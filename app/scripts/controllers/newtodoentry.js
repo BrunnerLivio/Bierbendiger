@@ -8,9 +8,20 @@
  * Controller of the bierbendigerApp
  */
 angular.module('bierbendigerApp')
-  .controller('NewtodoentryCtrl', function ($scope, googleGeocodingService, BierbendigerService,$location) {
+  .controller('NewtodoentryCtrl', function ($scope, googleGeocodingService, BierbendigerService,$location, $linq, $rootScope) {
        $scope.viewId="NewtodoentryCtrl";
-       $scope.newTodoEntry = {};
+       $scope.selectedEntry = {};
+       if($rootScope.$routeParams.todoEditId){
+           
+           $scope.selectedEntry = $linq.Enumerable().From($scope.entries)
+            .Where(function(x){
+                return x.Id == $rootScope.$routeParams.todoEditId;
+            })
+            .First();
+            console.log($scope.selectedEntry);
+       }
+       $scope.newTodoEntry = $scope.selectedEntry;
+       
        $scope.map = { 
            visibility:false,
             center: {

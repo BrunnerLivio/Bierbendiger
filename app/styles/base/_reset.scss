@@ -7,3 +7,14 @@ md-toast{
 body{
     -webkit-overflow-scrolling: touch;
 }
+md-tooltip{
+    @include respond-to(sm){
+        display:none;
+    }
+}
+a{
+    color:$md-blue-500;
+}
+a:visited{
+    color:$md-blue-600;
+}
