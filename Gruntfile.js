@@ -15,6 +15,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-php');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-ftp-deploy');
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
@@ -49,6 +50,17 @@ module.exports = function (grunt) {
                     open: true,
                     watchTask: true
                 }
+            }
+        },
+        'ftp-deploy': {
+            build: {
+                auth: {
+                    host: 'homos.bplaced.net',
+                    port: 21,
+                    authKey: 'key1'
+                },
+                src: '<%= yeoman.dist %>',
+                dest: ''
             }
         },
         replace: {
@@ -599,7 +611,8 @@ module.exports = function (grunt) {
         'filerev',
         'usemin',
         'htmlmin',
-        'replace'
+        'replace',
+        'ftp-deploy'
     ]);
 
     grunt.registerTask('default', [

@@ -1,5 +1,4 @@
 RewriteEngine on
 RewriteRule .? - [E=Authorization:%{HTTP:Authorization}]
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule /up/(.*)$ /api/images/$1 [NC,L]
-RewriteRule . index.php [L]
+RewriteRule . index.php [L] 

@@ -1,9 +1,11 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} -s [OR]
-RewriteCond %{REQUEST_FILENAME} -l [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^.*$ - [NC,L]
-
+ RewriteEngine on
+ Header add Access-Control-Allow-Origin "*"
+ Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type, authorization"
+ Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+  
+RewriteRule /scripts/(.*)$ /scripts/$1 [NC,L]
+RewriteRule /images/(.*)$ /images/$1 [NC,L]
 RewriteRule /api/(.*)$ /api/$1 [NC,L]
 
-RewriteRule ^(.*) /index.html [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.html [L]
