@@ -77,5 +77,17 @@ class AuthRepository{
             return false;
         }
     }
+    public static function ChangePassword($oldPassword, $newPassword){
+        $userRepository = new UserRepository;
+        $user = $userRepository->LoadWhere("Id = ".self::$userId)[0];
+        if($user["Password"] == self::Encode($oldPassword)){
+            $userRepository->UpdateWhere("Id = ".self::$userId, [
+                "Password" => self::Encode($newPassword)
+            ]);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

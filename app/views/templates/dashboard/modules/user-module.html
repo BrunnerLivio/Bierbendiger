@@ -1,4 +1,35 @@
-<md-content layout-padding>
-     <h3 ng-bind="user.Username"></h3>
-     <md-button class="md-raised" ng-click="logout()">Ausloggen</md-button>
+<md-content>
+    <h3 ng-bind="user.Username"></h3>
+    <md-spoiler>
+        <md-spoiler-title>
+            <span>
+            Passwort ändere
+            </span>
+        </md-spoiler-title>
+        <md-spoiler-body>
+            <md-progress-linear md-mode="indeterminate" ng-visible="loadingStatus.changePassword == 1" flex></md-progress-linear>
+            <div ng-if="loadingStatus.changePassword == 4">sPasswort stimmt ned du vollbanane.</div>
+            <form ng-submit="changePassword(changePasswordForm, oldPW, newPW)" name="changePasswordForm">
+                <div layout="column">
+                    <md-input-container>
+                        <label>Altes Passwort</label>
+                        <input ng-model="oldPW" name="oldPassword" type="password" required>
+                        <div ng-messages="changePasswordForm.oldPassword.$error" ng-if="changePasswordForm.oldPassword.$touched || changePasswordForm.$submitted">
+                            <div ng-message="required">Huere muschs alte Passwort ned igeh, hacker.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Neues Passwort</label>
+                        <input ng-model="newPW" type="password" required name="newPassword">
+                        <div ng-messages="changePasswordForm.newPassword.$error" ng-if="changePasswordForm.newPassword.$touched || changePasswordForm.$submitted">
+                            <div ng-message="required">Dude. Du weisch was ich verlange</div>
+                        </div>
+                    </md-input-container>
+                    <md-button ng-disabled="loadingStatus.changePassword == 1" type="submit">Ändere</md-button>
+                </div>
+            </form>
+        </md-spoiler-body>
+    </md-spoiler>
+
+    <md-button class="md-raised" ng-click="logout()">Ausloggen</md-button>
 </md-content>

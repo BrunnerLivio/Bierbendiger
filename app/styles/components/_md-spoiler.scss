@@ -1,0 +1,17 @@
+md-spoiler{
+    md-spoiler-title{
+        .md-button{
+            width:100%;
+            border-radius:0;
+            margin:0;
+        }
+    }
+    md-spoiler-body{
+        .spoilerBody{
+            background-color:$md-grey-100;
+            margin-bottom:10px;
+            display:none;
+        }
+        
+    }
+}

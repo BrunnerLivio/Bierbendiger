@@ -24,6 +24,16 @@ class UserController extends Controller {
 				$this->NotFound();
 			}
 		});
+        $this->Route('POST', '/changepassword', function(){
+            $request = $this->GetRequestData();
+            if(isset($request->oldPassword) && isset($request->newPassword)){
+                if(AuthRepository::Autherize()){
+                    $this->Send(["Status" => AuthRepository::ChangePassword($request->oldPassword, $request->newPassword)]);
+                }
+            } else {
+                $this->NotFound();
+            }
+        });
 		
 	}
 }
