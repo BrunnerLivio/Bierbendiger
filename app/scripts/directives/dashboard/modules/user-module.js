@@ -21,7 +21,6 @@ angular.module('bierbendigerApp')
                 }
                 
                 $scope.changePassword = function (form, oldPassword, newPassword) {
-                    console.log($scope);
                     $scope.loadingStatus.changePassword = 1;
                     BierbendigerService.changePassword(oldPassword, newPassword).success(function (data) {
                         

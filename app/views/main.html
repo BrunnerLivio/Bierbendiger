@@ -37,7 +37,7 @@
             <div layout="column" flex>
                 <md-list>
                     <md-list-item ng-repeat="user in users | orderBy: 'Username'">
-                        <img layout-align="center center" alt="{{ user.Username }}" ng-src="{{ 'api/images/profilepictures/' + user.Profilepicture }}"
+                        <img layout-align="center center" alt="{{ user.Username }}" ng-src="{{ '/api/user/' + user.Id +'/profilepicture' }}"
                         class="md-avatar" />
 
                         <h3 ng-bind="user.Username"></h3>

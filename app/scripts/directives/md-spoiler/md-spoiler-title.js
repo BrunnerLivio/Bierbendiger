@@ -11,6 +11,7 @@ angular.module('bierbendigerApp')
     return {
       restrict: 'E',
       transclude:true,
+      scope:false,
       template:"<md-button flex><span ng-transclude></span></md-button>",
       link: function postLink(scope, element, attrs) {
       }

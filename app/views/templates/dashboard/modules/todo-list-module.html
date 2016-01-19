@@ -23,7 +23,7 @@
             <div layout="column" ng-click="openEntry(entry)" flex>
                 <div layout="row" flex>
                     <div layout="column">
-                        <img layout-align="center center" alt="{{ entry.user.Username }}" ng-src="{{ 'api/images/profilepictures/' + entry.user.Profilepicture }}"
+                        <img layout-align="center center" alt="{{ entry.user.Username }}" ng-src="{{ '/api/user/' + entry.user.Id + '/profilepicture' }}"
                         class="profilepicture md-avatar" />
                     </div>
                     <div layout="column" class="entryContent" flex>

@@ -34,7 +34,15 @@ class UserController extends Controller {
                 $this->NotFound();
             }
         });
-		
+        $this->Route('GET', '/[i:id]/profilepicture', function($id){
+            $userRepository = new UserRepository();
+            $user = $userRepository->LoadWhere("Id = $id")[0];
+            $img = imagecreatefromjpeg("images/profilepictures/".$user["Profilepicture"]);
+            header("Content-Type: image/jpg");
+            imagejpeg($img);
+            imagedestroy($img);
+            exit;
+        });
 	}
 }
 ?>

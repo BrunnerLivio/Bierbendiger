@@ -6,6 +6,7 @@
 RewriteRule /scripts/(.*)$ /scripts/$1 [NC,L]
 RewriteRule /images/(.*)$ /images/$1 [NC,L]
 RewriteRule /api/(.*)$ /api/$1 [NC,L]
+RewriteRule /api/images/(.*)$ /api/images/$1 [NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.html [L]
