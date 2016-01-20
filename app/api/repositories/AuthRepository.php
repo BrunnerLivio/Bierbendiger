@@ -60,9 +60,6 @@ class AuthRepository{
         } else {
             $authHeader = $_SERVER["REDIRECT_Authorization"];
         }
-        if(isset($_SESSION["user"])){
-            return true;
-        }
         if(isset($authHeader)){
             $token = $authHeader;
             $rememberRepository = new RememberRepository;
