@@ -37,6 +37,7 @@ class AuthRepository{
 		$users = $userRepository->LoadWhere("Username = '$username' AND Password = '$password'");
 		if(count($users) == 1){
 			$user = $users[0];
+            $_SESSION["user"] = $user;
 			$data = self::RememberMe($username, $user["Id"]);
             $data["Value"] = $data["Token"];
             unset($data["Token"]);
@@ -59,11 +60,13 @@ class AuthRepository{
         } else {
             $authHeader = $_SERVER["REDIRECT_Authorization"];
         }
+        if(isset($_SESSION["user"])){
+            return true;
+        }
         if(isset($authHeader)){
             $token = $authHeader;
             $rememberRepository = new RememberRepository;
             $remembers = $rememberRepository->LoadWhere("Token = '$token'");
-            
             if(count($remembers) == 0){
                 header('HTTP/1.0 401 Unauthorized');
                 return false;

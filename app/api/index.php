@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'vendor/AltoRouter.php';
 include 'classes/DBConnect.php';
 include 'classes/Repository.php';
