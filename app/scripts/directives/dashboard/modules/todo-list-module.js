@@ -15,7 +15,7 @@ angular.module('bierbendigerApp')
             link: function postLink(scope, element, attrs) {
 
             },
-            controller: function (BierbendigerService, $scope, $rootScope, $linq, $location, $mdDialog, auth) {
+            controller: function (BierbendigerService, $scope, $rootScope, $linq, $location, $mdDialog, auth, Vibration) {
 
                 function updateTodoEntries() {
                     BierbendigerService.getTodoEntries().then(function (entries) {
@@ -46,6 +46,7 @@ angular.module('bierbendigerApp')
                 });
                 $scope.currentUsername = auth.getUser().Username;
                 $scope.deleteEntry = function(entry, ev){
+                    Vibration.vibrate(500);
                     var confirm = $mdDialog.confirm()
                         .clickOutsideToClose(true)
                         .title('Wetsch de Bitrag würkli lösche?')
@@ -75,6 +76,7 @@ angular.module('bierbendigerApp')
                         entry.Karma--;
                     }
                     entry.HasUserUpVoted = upVote;
+                    Vibration.vibrate(200);
                     BierbendigerService.voteTodoEntry(upVote, entry.Id).success(function () {
 
                     });

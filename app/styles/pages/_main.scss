@@ -78,11 +78,14 @@
                 &#introductionTitle{
                     background: linear-gradient(to right,$md-blue-a700 0%, $md-pink-a200 100%);                    
                     -webkit-background-clip: text;
-                    
+                    -moz-background-clip:text;
+                    background-clip:text;                   
                 }
                 &#membersTitle{
                     background: linear-gradient(to right,$md-red-a700 0%, $md-amber-400 100%);
-                    -webkit-background-clip: text;                    
+                    -webkit-background-clip: text;
+                    -moz-background-clip:text;
+                    background-clip:text;            
                 }
 			}
 			p{

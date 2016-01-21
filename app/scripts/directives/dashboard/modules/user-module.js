@@ -14,10 +14,11 @@ angular.module('bierbendigerApp')
             transclude: false,
             link: function postLink(scope, element, attrs) {
             },
-            controller: function ($scope, $location, auth, BierbendigerService) {
+            controller: function ($scope, $location, auth, BierbendigerService, Vibration) {
                 $scope.logout = function () {
                     auth.logout();
                     $location.path("/");
+                    Vibration.vibrate(500);                   
                 }
                 
                 $scope.changePassword = function (form, oldPassword, newPassword) {
