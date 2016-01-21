@@ -17,12 +17,14 @@ angular.module('bierbendigerApp')
        if(!auth.isAuthenticated()){
           loginDialog = $mdDialog.show({
                 controller:function($scope){
+                    $scope.failedLogin  = false;
                     $scope.login = function(){
+                        $scope.failedLogin  = false;
                         auth.login($scope.user.name, $scope.user.password).then(function(data){
                             $location.path("/dashboard");
                             $mdToast.showSimple('Willkommä ' + data.user.Username);
                         }, function(){
-                            
+                            $scope.failedLogin = true;
                         });
                     };
                     console.log($scope);

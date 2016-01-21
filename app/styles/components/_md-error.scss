@@ -1,0 +1,28 @@
+
+.md-error{
+    height:50px;
+    border-left:4px solid $md-red-400; 
+    color:#444;  
+    margin:auto;
+    transition:all 0.5s ease-in-out;   
+    .md-error-text{
+        transition:all 0.5s ease-in-out;
+        text-align: center;
+        padding:15px 5px;
+        font-size:14px;
+        strong{
+            letter-spacing: 1px;
+        }
+    }
+    &.hide{
+        display:none;
+        width:0;
+        border-left:none;
+        .md-error-text{
+            padding:0;
+            width:0;
+            overflow:hidden;
+        }
+    }
+    
+}

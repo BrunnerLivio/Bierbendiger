@@ -1,7 +1,8 @@
 <md-dialog-content>
 	<div class="md-dialog-content">
-        <h2>Login</h2>
+        <h3>Login</h3>
 		<md-content class="md-padding">
+            <md-error show="failedLogin">Logindate sind falsch</md-error>
 			<form ng-submit="login()">
 				<md-input-container class="md-icon-float md-block">
 					<label>Name</label>
