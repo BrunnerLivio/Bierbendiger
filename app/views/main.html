@@ -35,8 +35,8 @@
         </div>
         <div layout="column" flex>
             <div layout="column" flex>
-                <md-list>
-                    <md-list-item ng-repeat="user in users | orderBy: 'Username'">
+                <md-list flex>
+                    <md-list-item ng-repeat="user in users | orderBy: 'Username'" class="userItem">
                         <img layout-align="center center" alt="{{ user.Username }}" ng-src="{{ '/api/user/' + user.Id +'/profilepicture' }}"
                         class="md-avatar" />
 

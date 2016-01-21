@@ -92,6 +92,14 @@ module.exports = function (grunt) {
                         to: ''
                     }]
             },
+            stylePath: {
+                src: ['<%= yeoman.dist %>/index.html'],
+                dest: '<%= yeoman.dist %>/index.html',
+                replacements:[{
+                    from: 'href="styles',
+                    to: 'href="/styles'
+                }]
+            }
         },
         php: {
             dev: {
