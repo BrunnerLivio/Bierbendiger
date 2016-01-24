@@ -1,4 +1,4 @@
-/* global moment */
+
 'use strict';
 
 /**
@@ -21,12 +21,10 @@ angular
     'ngMaterial',
     'uiGmapgoogle-maps',
     'angular-linq',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ngVibrant'
   ])
   .config(function ($routeProvider, $locationProvider, $mdThemingProvider, $mdDateLocaleProvider) {
-    $mdDateLocaleProvider.formatDate = function(date) {
-       return moment(date).format('DD.MM.YYYY');
-    };
     $mdThemingProvider.theme('default')
     .primaryPalette('indigo', {
       'default': '400', 

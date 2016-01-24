@@ -121,7 +121,6 @@ angular.module('bierbendigerApp')
             },
             finishTodoEntry: function (data) {
                 var deferred = $q.defer();
-                console.log(data);
                 Upload.upload({
                     url: address + "todoentry/finish",
                     data: {
@@ -132,8 +131,13 @@ angular.module('bierbendigerApp')
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                         'Authorization': auth.getUser().Token.Value
                     }
-                }).then(function (data) {
-                    console.log(data);
+                }).then(function (error) {
+                    var entry = $linq.Enumerable().From(cache.todoEntries)
+                        .Where(function (x) {
+                            return x.Id == data.entryId;
+                        }).First();
+                    entry.Finished = true;
+                    $rootScope.$broadcast('todoEntriesUpdated');
                     deferred.resolve(data);
                 }, function () {
                     deferred.reject();
@@ -192,9 +196,9 @@ angular.module('bierbendigerApp')
             },
             changePassword: function (oldPassword, newPassword) {
                 console.log({
-                        "oldPassword": oldPassword,
-                        "newPassword": newPassword
-                    });
+                    "oldPassword": oldPassword,
+                    "newPassword": newPassword
+                });
                 return $http({
                     method: "POST",
                     url: address + "user/changepassword",
@@ -203,7 +207,7 @@ angular.module('bierbendigerApp')
                         "newPassword": newPassword
                     },
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',                      
+                        'Content-Type': 'application/x-www-form-urlencoded',
                         'Authorization': auth.getUser().Token.Value
                     }
                 })

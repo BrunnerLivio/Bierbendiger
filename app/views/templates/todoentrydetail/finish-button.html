@@ -1,5 +1,5 @@
 <md-menu>
-    <md-button class="md-fab finish md-success" ng-click="openPopup($mdOpenMenu, $event)">
+    <md-button class="md-fab finish md-success" ng-class="{'finished': finished}" ng-click="openPopup($mdOpenMenu, $event)">
         <md-icon md-svg-src="images/icons/checkered12.svg" class="checkeredIcon"></md-icon>
         <md-icon md-svg-src="images/icons/check35.svg" class="finishedIcon"></md-icon>
     </md-button>
@@ -22,7 +22,7 @@
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="end end">
-                    <md-button class="md-primary" md-prevent-menu-close="md-prevent-menu-close" ng-click="endChallenge(file)">
+                    <md-button class="$md-primary" md-prevent-menu-close="md-prevent-menu-close" ng-click="endChallenge(file)">
                         <md-icon md-svg-src="images/icons/check35.svg"></md-icon>
                         <span>Speichere</span>
                     </md-button>

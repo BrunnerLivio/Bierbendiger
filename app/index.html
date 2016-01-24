@@ -5,7 +5,7 @@
     <title>Bierbendiger</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
@@ -40,7 +40,6 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-    <script src='maps.googleapis.com/maps/api/js?sensor=false'></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -58,7 +57,9 @@
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <script src="bower_components/angular-linq/angular-linq.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/vibrant/dist/Vibrant.js"></script>
+    <script src="bower_components/ngVibrant/dist/angular-vibrant.js"></script>
+    <script src="bower_components/ngVibrant/dist/angular-vibrant.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -79,7 +80,8 @@
         <script src="scripts/controllers/newtodoentry.js"></script>
         <script src="scripts/services/googlegeocodingservice.js"></script>
         <script src="scripts/controllers/todoentrydetail.js"></script>
-        <script src="scripts/directives/finish-button.js"></script>
+        <script src="scripts/directives/todoentrydetail/finish-button.js"></script>
+        <script src="scripts/directives/todoentrydetail/todoentrydetailheader.js"></script>
         <script src="scripts/directives/hierarchicaldisplay.js"></script>                
         <script src="scripts/directives/msg-of-the-day.js"></script>
         <script src="scripts/directives/md-spoiler/md-spoiler.js"></script>

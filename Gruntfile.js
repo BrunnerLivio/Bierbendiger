@@ -575,7 +575,8 @@ module.exports = function (grunt) {
             'concurrent:server',
             'postcss:server',
             'connect:livereload',
-            'watch'
+            'watch',
+            'replace:stylePath'
         ]);
     });
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {

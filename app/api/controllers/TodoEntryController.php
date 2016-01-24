@@ -15,19 +15,22 @@ class TodoEntryController extends Controller {
                 $counter = 0;
                 while($counter < count($entries)){
                     $votes = $voteRepository->LoadWhere("TodoEntryId = ".$entries[$counter]["Id"]);
-                    $voteCounter = 0;
-                    $downVoteCounter = 0;
+                    $voteCounter = 0;    
                     $hasUserUpVoted = null;
-                    foreach($votes as $vote){
-                        if($vote["UpVote"] == "1"){
-                            $voteCounter++;
-                        } else {
-                            $voteCounter--;
-                        }
-                        if($vote["UserId"] == AuthRepository::GetUserId()){
-                            $hasUserUpVoted = $vote["UpVote"] == "1";
+                    if(count($votes) > 0){
+                        foreach($votes as $vote){
+                            if($vote["UpVote"] == "1"){
+                                $voteCounter++;
+                            } else {
+                                $voteCounter--;
+                            }
+                            if($vote["UserId"] == AuthRepository::GetUserId()){
+                                $hasUserUpVoted = $vote["UpVote"] == "1";
+                            }
                         }
                     }
+                    
+                    
                     $entries[$counter]["Karma"] = $voteCounter;
                     //null = not votet
                     //true = upvoted
@@ -126,6 +129,7 @@ class TodoEntryController extends Controller {
                     
                     $uploadFile = false;
                     $imageRepository = new ImageRepository;
+                    $exception;
                     try{
                         $imageRepository->SaveImage($media, $uniqid);
                         $uploadFile = true;
@@ -149,7 +153,7 @@ class TodoEntryController extends Controller {
                         ]);
                         $this->Send(["Status" => true]);
                     } else {
-                        $this->Send(["Status" => false, "Message" => "Couldn't upload file"]);
+                        $this->Send(["Status" => false, "Message" => "Couldn't upload file", "Exception" => $exception]);
                     }
                     
                     

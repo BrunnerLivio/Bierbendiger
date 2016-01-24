@@ -1,17 +1,15 @@
-<div flex-offset-xs="0" flex-offset="20" flex="60" flex-xs="100" id="{{viewId}}" ng-controller="TodoentrydetailCtrl as todoEntrydetail">
-    <md-whiteframe class="md-whiteframe-1dp content" layout flex>
-        <md-content flex>
-            <md-toolbar class="md-primary header" layout="row">
-                <h3 ng-bind="selectedEntry.Title" layout-margin flex></h1>
-                <md-button ng-click="close()">
-                    <md-tooltip>Schliessen</md-tooltip>
-                    <md-icon md-svg-icon="images/icons/close47.svg"></md-icon>
-                </md-button>
-            </md-toolbar>
-            <finish-button finished="{{selectedEntry.Finished}}"></finish-button>  
-            <md-content flex layout-padding class="entryContainer">
-                <p ng-bind="selectedEntry.Message" class="entryMessage"></p>
+<div id="{{viewId}}" ng-controller="TodoentrydetailCtrl as todoEntrydetail">
+    <div class="backgroundUnderlay"></div>
+    <div flex-offset-xs="0" flex-offset="20" flex="60" flex-xs="100">
+        <md-whiteframe class="md-whiteframe-3dp content" layout flex>
+            <md-content flex class="todoEntryDetailContent">
+                <todoentrydetail-header ng-class="{landscape : landscapeMode}">
+                    <finish-button finished="{{selectedEntry.Finished}}"></finish-button>
+                </todoentrydetail-header>
+                <md-content ng-if="landscapeMode" flex layout-padding class="entryContainer">
+                    <p ng-bind="selectedEntry.Message" class="entryMessage"></p>
+                </md-content>
             </md-content>
-        </md-content>
-    </md-whiteframe>
+        </md-whiteframe>
+    </div>
 </div>

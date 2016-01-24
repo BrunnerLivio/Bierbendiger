@@ -1,6 +1,10 @@
 finish-button{
-    position:relative;
-    top:-30px;
+    position: absolute;
+    bottom:0;
+    md-menu{
+        position:relative;
+        top:30px;
+    }
     .finish{
         transition: background 0.5s ease-in-out;
         & > .finishedIcon{

@@ -18,7 +18,7 @@ class ImageRepository{
             mkdir('images/gallery/thumbnail/', 0777, true);
         }
         
-        $fileExtension = $ext = end((explode(".", $img["name"])));
+        $fileExtension = strtolower (end((explode(".", $img["name"]))));
         $oldMediaName = $newFileName.".".$fileExtension;
         $fileName = $img["name"];
         $source = $img["tmp_name"];

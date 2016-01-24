@@ -18,4 +18,5 @@ angular.module('bierbendigerApp')
             return x.Id == $rootScope.$routeParams.todoId;
         })
         .First();
+    $scope.landscapeMode = $scope.selectedEntry.Message;
   });
