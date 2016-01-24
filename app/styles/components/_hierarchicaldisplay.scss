@@ -1,0 +1,7 @@
+[hierarchical-display] > *{
+    transform: scale(0);
+    transition: transform 0.1s ease-in-out;
+    &.fadeIn{
+        transform:scale(1);
+    }
+}

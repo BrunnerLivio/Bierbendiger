@@ -13,11 +13,14 @@ angular.module('bierbendigerApp')
             restrict: 'E',
             transclude: true,
             replace: true,
-            scope: {
-                "show": "=show"
-            },
             link: function postLink(scope, element, attrs) {
-               
+                scope.$watch(attrs.show, function (value) {
+                    if(value){
+                        element.slideDown();
+                    } else {
+                        element.slideUp();
+                    }
+                });
             }
         };
     });

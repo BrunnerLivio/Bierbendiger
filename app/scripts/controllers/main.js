@@ -27,7 +27,6 @@ angular.module('bierbendigerApp')
                             $scope.failedLogin = true;
                         });
                     };
-                    console.log($scope);
                 },
                 templateUrl: 'views/templates/login.html',
                 parent: angular.element(document.body),
