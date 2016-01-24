@@ -8,15 +8,20 @@
 </md-toolbar>
 <md-toolbar class="md-primary finishedHeader" layout="column" style="background-image:url(api/media/{{selectedEntry.media.Id}})"
 ng-if="selectedEntry.media != null">
-    <md-whiteframe class="md-whiteframe-1dp toolbartext title" flex="initial">
+    <md-progress-circular md-diameter="96" class="loader md-accent" md-mode="indeterminate"></md-progress-circular>
+    <md-whiteframe class="md-whiteframe-2dp toolbartext title" flex="initial">
         <span ng-bind="selectedEntry.Title" layout-margin></span>
     </md-whiteframe>
-    <md-whiteframe class="md-whiteframe-1dp toolbartext author" ng-if="selectedEntry.user" flex="initial">
-        <span ng-bind="selectedEntry.user.Username" layout-margin></span>
+    <md-whiteframe class="md-whiteframe-2dp toolbartext author" ng-if="selectedEntry.user" flex="initial">
+        <div flex layout="row">
+            <img layout-align="center center" alt="{{selectedEntry.user.Username}}" ng-src="/api/user/{{selectedEntry.user.Id}}/profilepicture"
+            class="md-avatar avatar" />
+            <span ng-bind="selectedEntry.user.Username" stlye="margin-left:10px;" layout-align="center center"></span>
+        </div>
     </md-whiteframe>
     <md-button ng-click="close()" class="close">
         <md-tooltip>Schliessen</md-tooltip>
         <md-icon md-svg-icon="images/icons/close47.svg"></md-icon>
     </md-button>
-    <div ng-transclude flex></div>    
+    <div ng-transclude flex></div>
 </md-toolbar>

@@ -14,7 +14,7 @@ todoentrydetail-header{
         height:400px;
     }
     .finishedHeader{
-        height:80vh;
+        height:85vh;
         background-size:cover;
         position:relative;
         background-position:center;
@@ -25,6 +25,9 @@ todoentrydetail-header{
         .author{
             top:80px;
             left:10px;
+            .avatar{
+                margin-right:10px;
+            }
         }
         .toolbartext{
             position:absolute;
@@ -34,7 +37,19 @@ todoentrydetail-header{
             padding:10px;
             border-bottom-width:4px;
             border-bottom-style:solid;
-            
+            opacity:0;
+            margin-left:-10px;
+            transition:all 0.5s ease-in-out;
+            &.reveal{
+                margin-left:0;
+                opacity:1;
+            }
         }
+    }
+    .loader{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
     }
 }

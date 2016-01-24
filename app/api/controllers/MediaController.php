@@ -8,6 +8,8 @@ class MediaController extends Controller {
             $mediaRepository = new MediaRepository();
             $media = $mediaRepository->LoadWhere("Id = $id")[0];
             $path = "images/gallery/full/".$media["Path"];
+            $imageRepository = new ImageRepository();
+            $imageRepository->CacheImage($path);
             
             header("Content-Type: image/".pathinfo($path)["extension"]);
             header("Content-Length: ".filesize($path));
@@ -20,6 +22,9 @@ class MediaController extends Controller {
             $mediaRepository = new MediaRepository();
             $media = $mediaRepository->LoadWhere("Id = $id")[0];
             $path = "images/gallery/thumbnail/".$media["Path"];
+            
+            $imageRepository = new ImageRepository();
+            $imageRepository->CacheImage($path);
             
             header("Content-Type: image/".pathinfo($path)["extension"]);
             header("Content-Length: ".filesize($path));

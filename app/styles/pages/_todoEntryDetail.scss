@@ -1,3 +1,7 @@
+@keyframes slideDown {
+    0%   { marign-top:0px}
+    100% { margin-top:50px;}
+}
 #TodoentrydetailCtrl{
     .backgroundUnderlay{
         width:100%;
@@ -9,10 +13,17 @@
         z-index:0;
     }
     .content{
-        margin-top:50px;
          @include respond-to(sm){
+        
+             
             margin-bottom:0px;
             margin-top:0px;
+        }
+        @include respond-to(lg){
+            animation: slideDown 0.5s ease-in-out forwards;
+        }
+        @include respond-to(md){
+            animation: slideDown 0.5s ease-in-out forwards;
         }
         .entryContainer{
             margin-top:0px !important;

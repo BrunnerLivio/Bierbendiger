@@ -38,6 +38,8 @@ class UserController extends Controller {
             $userRepository = new UserRepository();
             $user = $userRepository->LoadWhere("Id = $id")[0];
             $img = imagecreatefromjpeg("images/profilepictures/".$user["Profilepicture"]);
+            $imageRepository = new ImageRepository();
+            $imageRepository->CacheImage("images/profilepictures/".$user["Profilepicture"]);
             header("Content-Type: image/jpg");
             imagejpeg($img);
             imagedestroy($img);

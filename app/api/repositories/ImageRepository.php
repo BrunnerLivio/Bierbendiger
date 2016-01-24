@@ -43,6 +43,16 @@ class ImageRepository{
             $this->GenerateThumbnail($newPath, 'images/gallery/thumbnail/'.$newFileName.".jpg", 150);
         }
     }
+    public function CacheImage($src){
+        session_cache_limiter('none');
+        header('Cache-control: max-age='.(60*60*24*365));
+        header('Expires: '.gmdate(DATE_RFC1123,time()+60*60*24*365));
+header('Last-Modified: '.gmdate(DATE_RFC1123,filemtime($src)));
+        if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+        header('HTTP/1.1 304 Not Modified');
+        die();
+        }
+    }
     private function GenerateThumbnail($src, $dest, $desired_width) {
         $source_image = imagecreatefromjpeg($src);
         $width = imagesx($source_image);
