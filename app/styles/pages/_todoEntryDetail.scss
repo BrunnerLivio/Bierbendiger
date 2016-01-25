@@ -1,7 +1,4 @@
-@keyframes slideDown {
-    0%   { marign-top:0px}
-    100% { margin-top:50px;}
-}
+
 #TodoentrydetailCtrl{
     .backgroundUnderlay{
         width:100%;
@@ -15,7 +12,6 @@
     .content{
          @include respond-to(sm){
         
-             
             margin-bottom:0px;
             margin-top:0px;
         }
@@ -28,13 +24,30 @@
         .entryContainer{
             margin-top:0px !important;
             .entryMessage{
-                margin-top:30px !important;
+                margin-top:50px !important;
+                margin-bottom:30px;
                 padding-top:0px !important;
                 white-space: pre-wrap;
                 word-break:break-word; 
             }
+            .entryInformation{
+                margin-top:50px !important;
+                margin-bottom:30px;
+                margin-left:10px;
+            }
+            .entryDestination{
+                margin-top:50px !important;
+            }
         }
-    }    
+        .angular-google-map-container { 
+            height:350px;
+            width:100%;
+        }
+        .map{
+            height:350px;
+            width:100%;
+        }
+     }    
     .todoEntryDetailContent{
         overflow:visible;
     }

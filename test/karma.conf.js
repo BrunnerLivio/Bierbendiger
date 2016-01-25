@@ -40,6 +40,7 @@ module.exports = function(config) {
       'bower_components/vibrant/dist/Vibrant.js',
       'bower_components/ngVibrant/dist/angular-vibrant.js',
       'bower_components/ngVibrant/dist/angular-vibrant.min.js',
+      'bower_components/moment/moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

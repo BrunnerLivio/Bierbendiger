@@ -3,9 +3,7 @@
     z-index:20;
     transition:all 0.3s ease-in-out;
     overflow-y:auto;
-    will-change: left, top, width, height, position;
     &.fullscreen{
-        left:0 !important;
         width:100% !important;
         height:100% !important;
         position:absolute;

@@ -17,7 +17,6 @@ angular.module('bierbendigerApp')
                 var $fancyTransition = $(".fancy-transition");
                 if(value){
                     $(".container").css("overflow", "hidden");
-                    console.log(element.children());
                     element.children().fadeOut().promise().done(function() {
                         element.children().show();
                         element.children().css("visibility", "hidden");   
@@ -31,7 +30,7 @@ angular.module('bierbendigerApp')
                         }
                         $newElement.css({
                             "background-color": background,
-                            "width": element.width() + "px",
+                            "width":  element.width() + "px",
                             "height": element.height() +"px",
                             "left" : element.offset().left + "px",
                             "top": element.offset().top + "px",
@@ -40,7 +39,10 @@ angular.module('bierbendigerApp')
                         $("body").append($newElement);
                         window.setTimeout(function(){
                             $newElement.addClass("fullscreen");
-                            lastTopPosition = $newElement.css("top");
+                            $newElement.css({
+                                "transform": "translate(-" + element.offset().left + "px, 0px)"
+                            });
+                            lastTopPosition = element.offset().top;
                             $newElement.css("top", $(document).scrollTop() + "px");
                             window.setTimeout(function(){
                                 var $includeElement = $("<div></div>");
@@ -63,7 +65,12 @@ angular.module('bierbendigerApp')
                     window.setTimeout(function(){
                         $includeElement.remove();
                         $fancyTransition.removeClass("fullscreen");
-                        $fancyTransition.css("top", lastTopPosition);
+                        console.log(element);
+                        $fancyTransition.css({
+                                "transform": "translate(0, " + lastTopPosition + "px)",
+                                "width": element.width() + "px",
+                                "height": element.height() +"px",
+                            });
                         $(".container").css({"overflow":"initial", "height": "auto"});
                         window.setTimeout(function(){
                             $fancyTransition.remove();

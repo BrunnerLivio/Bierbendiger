@@ -1,4 +1,8 @@
-﻿.md-accent{
+﻿@keyframes slideDown {
+    0%   { marign-top:0px}
+    100% { margin-top:50px;}
+}
+.md-accent{
     color:white !important;
 }
 md-toast{

@@ -6,8 +6,30 @@
                 <todoentrydetail-header ng-class="{landscape : landscapeMode}">
                     <finish-button finished="{{selectedEntry.Finished}}"></finish-button>
                 </todoentrydetail-header>
-                <md-content ng-if="landscapeMode" flex layout-padding class="entryContainer">
-                    <p ng-bind="selectedEntry.Message" class="entryMessage"></p>
+                <md-content ng-if="landscapeMode" flex class="entryContainer">
+                    <p layout-margin ng-if="selectedEntry.Message" ng-bind="selectedEntry.Message" class="entryMessage"></p>
+                    <div class="entryInformation" ng-if="!map || selectedEntry.ApplicationDate">
+                        <div>
+                            
+                            <span ng-if="selectedEntry.ApplicationDate || selectedEntry.Destination">Es findet</span>
+                            <span ng-if="selectedEntry.ApplicationDate">
+                                <span>am</span>
+                                <span ng-bind="selectedEntry.ApplicationDate | date:'dd.MM.yyyy'"></span>
+                            </span>
+                            <span ng-if="selectedEntry.Destination">
+                                <span>in</span>
+                                <span class="entryDestination" ng-bind="selectedEntry.Destination"></span>
+                                
+                            </span>
+                            <span  ng-if="selectedEntry.ApplicationDate || selectedEntry.Destination">statt</span>
+                        </div>
+                    </div>
+                    <div class="map" ng-if="map">
+                        <ui-gmap-google-map ng-if="map" center='map.center' zoom='map.zoom'>
+                            <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+                        </ui-gmap-google-map>
+                    </div>
+                    
                 </md-content>
             </md-content>
         </md-whiteframe>

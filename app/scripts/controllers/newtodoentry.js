@@ -42,28 +42,28 @@ angular.module('bierbendigerApp')
             $location.path("/dashboard");
             BierbendigerService.saveTodoEntry($scope.newTodoEntry).then(function(data){});
         }
+        $scope.selectedLocationChange = function(location){
+            $scope.map = { 
+                visibility:true,
+                center: {
+                    latitude: location.geometry.location.lat,
+                    longitude: location.geometry.location.lng
+                },
+                zoom:8,
+                markers:[
+                    {
+                        latitude: location.geometry.location.lat,
+                        longitude: location.geometry.location.lng,
+                        id: 0,
+                        title: location
+                    }
+                ]
+            };
+        }
         $scope.searchLocation = function(location){
            googleGeocodingService.getAddress(location)
            .then(function(data){
-               if(data.status == "OK"){
-                   $scope.map = { 
-                        visibility:true,
-                        center: {
-                            latitude: data.results[0].geometry.location.lat,
-                            longitude: data.results[0].geometry.location.lng
-                        },
-                        zoom:8,
-                        markers:[
-                            {
-                                latitude: data.results[0].geometry.location.lat,
-                                longitude: data.results[0].geometry.location.lng,
-                                id: 0,
-                                title: location
-                            }
-                        ]
-                    };
-               }
-               
+               $scope.locationItems = data.results;
            });
         }
   });

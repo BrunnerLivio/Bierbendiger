@@ -17,9 +17,13 @@ angular.module('bierbendigerApp')
             angular.forEach(cache.todoEntries, function (entry) {
                 if (!(entry.CreationDate instanceof Date)) {
                     entry.CreationDate = new Date(entry.CreationDate);
+                    
                 }
                 if (!(entry.ApplicationDate instanceof Date)) {
                     entry.ApplicationDate = new Date(entry.ApplicationDate);
+                    if ( isNaN( entry.ApplicationDate.getTime() ) ) {
+                        entry.ApplicationDate = undefined;
+                    }
                 }
             });
         }
