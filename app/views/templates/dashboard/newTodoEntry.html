@@ -3,7 +3,7 @@
     <div flex-offset-xs="0" flex-offset="20" flex="60" flex-xs="100" >
         <md-whiteframe class="md-whiteframe-3dp content" layout  flex>
             <md-content flex>
-                <form ng-submit="saveTodoEntry.$valid && saveEntry()" name="saveTodoEntry">
+                <form name="saveTodoEntry">
                     <md-toolbar layout-padding class="md-accent">
                         <div class="md-toolbar-tools">
                             <md-icon md-svg-icon="images/icons/verification5.svg" layout-margin></md-icon>
@@ -76,7 +76,7 @@
                             </md-checkbox>
                         </md-input-container>
                         <div layout-align="end end" layout="row">
-                            <md-button class="md-raised md-accent" type="submit">Abschickä</md-button>
+                            <md-button class="md-raised md-accent" ng-click="saveTodoEntry.$valid && saveEntry()">Abschickä</md-button>
                         </div>
                     </div>
                     
