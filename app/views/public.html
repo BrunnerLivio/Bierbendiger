@@ -1,0 +1,15 @@
+<background-underlay background-color="#4CAF50"></background-underlay>
+<md-button class="back" ng-click="location('/')">
+    <md-icon md-svg-src="images/icons/back.svg"></md-icon>
+</md-button>
+<md-list class="entries">
+    <md-list-item class="entry" ng-repeat="entry in entries">
+        <md-whiteframe class="md-whiteframe-3dp" flex="50" flex-offset="25" flex-offse-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+            <div class="finishedBackground" ng-if="entry.Finished == true" style="background-image:url('/api/media/{{entry.media.Id}}')"></div>
+            <md-content layout-padding>
+                <h2 ng-bind="entry.Title"></h2>
+                <p ng-bind="entry.Message"></p>
+            </md-content>
+        </md-whiteframe>
+    </md-list-item>
+</md-list>

@@ -186,6 +186,12 @@ angular.module('bierbendigerApp')
                 }
                 return deferred.promise;
             },
+            getPublicTodoEntries: function () {
+                return $http({
+                    method: "GET",
+                    url: address + "public/todoentry",
+                });
+            },
             getMessageOfTheDay: function () {
                 return $http({
                     method: "GET",

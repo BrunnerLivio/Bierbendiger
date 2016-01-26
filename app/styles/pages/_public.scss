@@ -1,0 +1,33 @@
+#PublicCtrl{
+    .back{
+        position:absolute;
+        top:5;
+        left:5;
+        min-width:auto;
+        color:white;
+        md-icon{
+            color:white;
+        }
+    }
+    .entries{
+        .entry{
+            .finishedBackground{
+                width:100%;
+                height:800px;
+                @include respond-to(md){
+                    height:600px;
+                }
+                @include respond-to(sm){
+                   height:400px;   
+                }
+                background-size: cover;
+                background-color:white;
+                background-position: center;
+            }
+            animation: slideDown 0.5s ease-in-out forwards;
+            margin:0;
+            padding:0;
+        }
+    }
+   
+}

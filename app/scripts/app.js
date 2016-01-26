@@ -118,6 +118,11 @@ angular
               }
           }
       })
+      .when('/public', {
+        templateUrl: 'views/public.html',
+        controller: 'PublicCtrl',
+        controllerAs: 'public'
+      })
       .otherwise({
         redirectTo: '/'
       });
