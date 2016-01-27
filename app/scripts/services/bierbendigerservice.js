@@ -55,6 +55,27 @@ angular.module('bierbendigerApp')
                 }
                 return deferred.promise;
             },
+            getGalleryItems: function () {
+                var deferred = $q.defer();
+                if (cache.galleryItems == undefined) {
+                    $http({
+                        method: "GET",
+                        url: address + "media",
+                        headers: {
+                            'Authorization': auth.getUser().Token.Value
+                        }
+                    }).success(function (data) {
+                        cache.galleryItems = data;
+                        deferred.resolve(cache.galleryItems);
+                    }).error(function (data) {
+                        errorMessage();
+                        deferred.reject();
+                    });
+                } else {
+                    deferred.resolve(cache.galleryItems);
+                }
+                return deferred.promise;
+            },
             voteTodoEntry: function (upvote, todoEntryId) {
                 var deferred = $q.defer();
                 return $http({

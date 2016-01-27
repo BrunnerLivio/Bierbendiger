@@ -4,6 +4,12 @@ class MediaController extends Controller {
 		parent::__construct("media");
 	}
 	public function Map(){
+        $this->Route('GET', '', function(){
+            if(AuthRepository::Autherize()){
+                $mediaRepository = new MediaRepository;
+                $this->Send($mediaRepository->LoadAll([["UploadUserId" => "user"]]));
+            }
+        });
 		$this->Route( 'GET', '/[i:id]', function($id) {
             $mediaRepository = new MediaRepository();
             $media = $mediaRepository->LoadWhere("Id = $id")[0];

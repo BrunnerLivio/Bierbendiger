@@ -70,22 +70,36 @@
 				margin-top:10px;
 				margin-bottom:10px;
 				padding:7px;
-                -webkit-text-fill-color: transparent;
+                //webkit only
+                @media screen and (-webkit-min-device-pixel-ratio:0) {
+                    -webkit-text-fill-color: transparent;
+                    -moz-text-fill-color: transparent;
+                    -o-text-fill-color: transparent;                
+                    text-fill-color: transparent;
+                }
                 background-size: 100% 100%;
 				@include respond-to(sm){
 					font-size:30px;	
 				}
                 &#introductionTitle{
-                    background: linear-gradient(to right,$md-blue-a700 0%, $md-pink-a200 100%);                    
-                    -webkit-background-clip: text;
-                    -moz-background-clip:text;
-                    background-clip:text;                   
+                    color:$md-indigo-400;
+                    @media screen and (-webkit-min-device-pixel-ratio:0) {
+                        background: linear-gradient(to right,$md-blue-a700 0%, $md-pink-a200 100%);                    
+                        -webkit-background-clip: text;
+                        -moz-background-clip:text;
+                        -o-background-clip:text;
+                        background-clip:text;          
+                    }         
                 }
                 &#membersTitle{
-                    background: linear-gradient(to right,$md-red-a700 0%, $md-amber-400 100%);
-                    -webkit-background-clip: text;
-                    -moz-background-clip:text;
-                    background-clip:text;            
+                    color:$md-red-a700;                    
+                    @media screen and (-webkit-min-device-pixel-ratio:0) {
+                        background: linear-gradient(to right,$md-red-a700 0%, $md-amber-400 100%);
+                        -webkit-background-clip: text;
+                        -moz-background-clip:text;
+                        -o-background-clip:text;
+                        background-clip:text;         
+                    }   
                 }
 			}
 			p{
