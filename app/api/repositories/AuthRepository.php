@@ -37,7 +37,6 @@ class AuthRepository{
 		$users = $userRepository->LoadWhere("Username = '$username' AND Password = '$password'");
 		if(count($users) == 1){
 			$user = $users[0];
-            $_SESSION["user"] = $user;
 			$data = self::RememberMe($username, $user["Id"]);
             $data["Value"] = $data["Token"];
             unset($data["Token"]);

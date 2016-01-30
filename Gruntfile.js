@@ -77,7 +77,7 @@ module.exports = function (grunt) {
                 dest: '<%= yeoman.dist %>/api/',             // destination directory or file
                 replacements: [{
                     from: '"Mode": "Debug",',                   // string replacement
-                    to: '"Mode": "Test",'
+                    to: '"Mode": "Release",'
                 }]
             },
             releasecomments: {

@@ -18,7 +18,26 @@ angular.module('bierbendigerApp')
                 $scope.file = {};
                 $scope.openPopup = function ($mdOpenMenu, $event) {
                     if (!$scope.finished) {
-                        $mdOpenMenu($event);
+                        if($scope.selectedEntry.ProofPhotoRequired == "1"){
+                            
+                                $mdOpenMenu($event);
+                        } else {
+                            var confirm = $mdDialog.confirm()
+                            .clickOutsideToClose(true)
+                            .title('Bisch sicher dass de Bitrag abgschlosse hesch?')
+                            .textContent('Huere hesch du de abgschlosse, hesch doch eh zviel schiss')                        
+                            .ariaLabel('Confirm')
+                            .ok('Ja ichs gmacht')
+                            .cancel('Ich bin en lügi bueb')
+                            .targetEvent($event);
+                            
+                            $mdDialog.show(confirm).then(function() {
+                                BierbendigerService.finishTodoEntryWithoutPicture({entryId: $rootScope.$routeParams.todoId }).then(function(data){
+                                    $scope.finished = true;
+                                });
+                            });
+                        
+                        }
                     }
                 }
                 $scope.fileSelect = function () {

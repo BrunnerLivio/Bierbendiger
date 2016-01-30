@@ -21,7 +21,12 @@ angular.module('bierbendigerApp')
             console.log($scope.selectedEntry);
        }
        $scope.newTodoEntry = $scope.selectedEntry;
-       
+       $scope.$watch('selectedEntry.Destination', function(value){
+           console.log(value);
+           if(value == ""){
+               $scope.map.visibility = false;
+           }
+       });
        $scope.map = { 
            visibility:false,
             center: {

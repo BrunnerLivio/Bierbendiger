@@ -4,6 +4,7 @@ class PublicController extends Controller {
         parent::__construct("public");
     }
     public function Map(){
+        //Gibt alle öffentlichen Todoentries zurück
         $this->Route( 'GET', '/todoentry', function() {
             $todoEntryRepository = new TodoEntryRepository;
             $entries = $todoEntryRepository->LoadWhere("Public = 1", [["CreatorUserId" => "user", "ProofPhotoId" => "media"]]);
@@ -15,6 +16,7 @@ class PublicController extends Controller {
             }
             $this->Send($entries);
         });
+        //Gibt einen Zufälligen EntryofTheDay zurück
         $this->Route( 'GET', '/entryoftheday', function() {
             $entryOfTheDayRepository = new EntryOfTheDayRepository;
             $entries = $entryOfTheDayRepository->LoadOrderBy("RAND() LIMIT 1", [["UserId" => "user"]]);
@@ -28,11 +30,13 @@ class PublicController extends Controller {
                 ]
             ]);
         });
+        //Zeigt die Anzahl User
         $this->Route('GET', '/user-count', function(){
             $userRepository = new UserRepository;
             $number = count($userRepository->LoadAll());
             $this->Send(array("amount"=> $number));
         });
+        //Lädt alle User
         $this->Route('GET', '/users', function(){
             $userRepository = new UserRepository;
             $users = $userRepository->LoadAll();

@@ -56,7 +56,6 @@ angular.module('bierbendigerApp')
                         .targetEvent(ev);
                         
                     $mdDialog.show(confirm).then(function() {
-                        console.log(entry);
                         BierbendigerService.deleteTodoEntry(entry.Id);
                     }, function() {
                     });

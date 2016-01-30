@@ -113,11 +113,12 @@ class TodoEntryController extends Controller {
         });
         $this->Route('POST', '/finish', function(){
             if(AuthRepository::Autherize()){
+                $request = $this->GetRequestData();
+                $todoEntryRepository = new TodoEntryRepository;
                 if(isset($_POST["entryId"]) && isset($_FILES['file'])){
                     $media = $_FILES['file'];
                     $entryId = $_POST["entryId"];
                     
-                    $todoEntryRepository = new TodoEntryRepository;
                     $mediaRepository = new MediaRepository;
                     
                     
@@ -149,7 +150,8 @@ class TodoEntryController extends Controller {
                         
                         $todoEntryRepository->UpdateWhere("Id = $entryId", [
                         "ProofPhotoId" => $mediaRepository->GetLastInsertedId(),
-                        "Finished" => true
+                        "Finished" => true,
+                        "FinishedUserId" => AuthRepository::GetUserId()
                         ]);
                         $this->Send(["Status" => true]);
                     } else {
@@ -157,6 +159,13 @@ class TodoEntryController extends Controller {
                     }
                     
                     
+                } else if(isset($request->entryId)){
+                    $entryId = $request->entryId;
+                    $todoEntryRepository->UpdateWhere("Id = $entryId", [
+                        "Finished" => true,
+                        "FinishedUserId" => AuthRepository::GetUserId()                        
+                    ]);
+                    $this->Send(["Status" => true]);
                 } else {
                     $this->NotFound();
                 }
