@@ -9,6 +9,8 @@
  */
 angular.module('bierbendigerApp')
   .controller('NewtodoentryCtrl', function ($scope, googleGeocodingService, BierbendigerService,$location, $linq, $rootScope) {
+       
+       console.log("asdf");
        $scope.viewId="NewtodoentryCtrl";
        $scope.selectedEntry = {};
        if($rootScope.$routeParams.todoEditId){

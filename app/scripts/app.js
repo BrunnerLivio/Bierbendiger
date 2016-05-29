@@ -67,56 +67,22 @@ angular
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard',
         requiresLogin:true,
-        resolve: {
-            createTodoEntry:function(){
-                return false;
-            },
-            todoEntryDetail:function(){
-                return false;
-            }
-        }
       })
       .when('/dashboard/create-todoentry', {
-          templateUrl: 'views/dashboard.html',
-          controller: 'DashboardCtrl',
-          controllerAs:'dashboard',
+          templateUrl: 'views/templates/dashboard/newTodoEntry.html',
+          controller: 'NewtodoentryCtrl',
           requiresLogin:true,
-          resolve: {
-              createTodoEntry:function(){
-                return true;
-              },
-              todoEntryDetail:function(){
-                  return false;
-              }
-          }
       })
       .when('/dashboard/todoentry/:todoId', {
-          templateUrl: 'views/dashboard.html',
-          controller: 'DashboardCtrl',
-          controllerAs:'dashboard',
+          templateUrl: 'views/templates/dashboard/todoEntry-detail.html',
+          controller: 'TodoentrydetailCtrl',
           requiresLogin:true,
-          resolve: {
-            createTodoEntry:function(){
-                return false;
-            },
-            todoEntryDetail:function(){
-                return true;
-            }
-          }
       })
       .when('/dashboard/todoentry/edit/:todoEditId', {
           templateUrl: 'views/dashboard.html',
           controller: 'DashboardCtrl',
           controllerAs:'dashboard',
           requiresLogin:true,
-          resolve: {
-              createTodoEntry:function(){
-                return true;
-              },
-              todoEntryDetail:function(){
-                  return false;
-              }
-          }
       })
       .when('/public', {
         templateUrl: 'views/public.html',

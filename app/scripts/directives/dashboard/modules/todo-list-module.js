@@ -36,11 +36,11 @@ angular.module('bierbendigerApp')
                         }
                     });
                 }
-                function openEntry(entry) {
-                    $location.path("/dashboard/todoentry/" + entry.Id);
-                }
 
-                $scope.openEntry = openEntry;
+                $scope.openEntry = function(entry){
+                    entry.IsOpen = true;
+                };
+                
                 $rootScope.$on('todoEntriesUpdated', function () {
                     updateTodoEntries();
                 });

@@ -8,20 +8,20 @@
  * Factory in the bierbendigerApp.
  */
 angular.module('bierbendigerApp')
-  .factory('apiAddress', function () {
+    .factory('apiAddress', function() {
 
-    return {
-        bierbendiger: 
-        {
-            address:"http://localhost:8081/api/"
-        },
-        header:{
-            Authorization: ""
-        },
-        googleGeocoding: {
-            address:"https://maps.googleapis.com/maps/api/",
-            key: "AIzaSyA6r9-4BZ-ijJHjJAp3m_zalpcjGDhgIBk" 
+        return {
+            bierbendiger:
+            {
+                address: "http://localhost:8081/api/"
+            },
+            header: {
+                Authorization: ""
+            },
+            googleGeocoding: {
+                address: "https://maps.googleapis.com/maps/api/",
+                key: "AIzaSyA6r9-4BZ-ijJHjJAp3m_zalpcjGDhgIBk"
+            }
         }
-    }
-    
-  });
+
+    });

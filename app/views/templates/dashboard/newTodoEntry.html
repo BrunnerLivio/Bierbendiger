@@ -1,89 +1,86 @@
-<div class="main" id="{{viewId}}" ng-controller="NewtodoentryCtrl as newTodoEntry">
-    <div class="whiteOverlay"></div>
-    <div flex-offset-xs="0" flex-offset="20" flex="60" flex-xs="100" >
-        <md-whiteframe class="md-whiteframe-3dp content" layout  flex>
-            <md-content flex>
-                <form name="saveTodoEntry">
-                    <md-toolbar layout-padding class="md-accent">
-                        <div class="md-toolbar-tools">
-                            <md-icon md-svg-icon="images/icons/verification5.svg" layout-margin></md-icon>
-                            <h3 flex>Neue Bitrag erstelle</h3>
-                            <md-button ng-click="close()">
-                                <md-tooltip>Schliessen</md-tooltip>
-                                <md-icon md-svg-icon="images/icons/close47.svg"></md-icon>
-                            </md-button>
-                        </div>
-                    </md-toolbar>
-                    <div layout-padding>
-                        <div layout="row" layout-xs="column">
-                            <md-input-container class="md-block" flex>
-                                <label>Titel</label>
-                                <input ng-model="newTodoEntry.Title" type="text" name="title" required />
-                                <div ng-messages="saveTodoEntry.title.$error" ng-if="saveTodoEntry.title.$touched || saveTodoEntry.$submitted">
-                                    <div ng-message="required">Du musch scho en Titel igeh, Joggel.</div>
-                                </div>
-                            </md-input-container>
-                            <div flex-xs="100">
-                                <md-datepicker ng-model="newTodoEntry.ApplicationDate" md-placeholder="Durchfuehrigsdatum"></md-datepicker>
+<div class="main" id="{{viewId}}">
+    <div flex-offset-xs="0" flex-offset="20" flex="60" flex-xs="100">
+        <div class="content">
+            <md-whiteframe class="md-whiteframe-3dp" flex>
+                <md-content flex>
+                    <form name="saveTodoEntry">
+                        <md-toolbar layout-padding class="md-accent">
+                            <div class="md-toolbar-tools">
+                                <md-icon md-svg-icon="images/icons/verification5.svg" layout-margin></md-icon>
+                                <h3 flex>Neue Bitrag erstelle</h3>
+                                <md-button ng-click="close()">
+                                    <md-tooltip>Schliessen</md-tooltip>
+                                    <md-icon md-svg-icon="images/icons/close47.svg"></md-icon>
+                                </md-button>
                             </div>
-                            
-                        </div>
-                        <md-input-container class="md-block">
-                            <label>Beschribig</label>
-                            <textarea ng-model="newTodoEntry.Message" name="message" columns="1" rows="5"></textarea>
-                        </md-input-container>
-                        <div>
-                            <md-autocomplete
-                                md-selected-item="selectedItem"
-                                md-search-text-change="searchLocation(selectedEntry.Destination)"
-                                md-search-text="selectedEntry.Destination"
-                                md-selected-item-change="selectedLocationChange(item)"
-                                md-items="item in locationItems"
-                                md-item-text="item.formatted_address"
+                        </md-toolbar>
+                        <div layout-padding>
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-block" flex>
+                                    <label>Titel</label>
+                                    <input ng-model="newTodoEntry.Title" type="text" name="title" required />
+                                    <div ng-messages="saveTodoEntry.title.$error" ng-if="saveTodoEntry.title.$touched || saveTodoEntry.$submitted">
+                                        <div ng-message="required">Du musch scho en Titel igeh, Joggel.</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex-xs="100">
+                                    <md-datepicker flex ng-model="newTodoEntry.ApplicationDate" md-placeholder="Durchfuehrigsdatum"></md-datepicker>
+                                </div>
+
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Beschribig</label>
+                                <textarea ng-model="newTodoEntry.Message" name="message" columns="1" rows="5"></textarea>
+                            </md-input-container>
+                            <div>
+                                <md-autocomplete md-selected-item="selectedItem" md-search-text-change="searchLocation(selectedEntry.Destination)" md-search-text="selectedEntry.Destination"
+                                md-selected-item-change="selectedLocationChange(item)" md-items="item in locationItems" md-item-text="item.formatted_address"
                                 placeholder="Durchfüerhigsort">
                                     <md-item-template>
                                         <span md-highlight-text="selectedEntry.Destination" md-highlight-flags="^i" ng-click="selectedLocationChange(item)">{{item.formatted_address}}</span>
                                     </md-item-template>
-                                <md-not-found>
-                                    No states matching "{{selectedEntry.Destination}}" were found.
-                                </md-not-found>
-                            </md-autocomplete>
-                        </div>
-                        <div class="map {{map.visibility ? '': 'hidden'}}" flex>
-                            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                                <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
-                            </ui-gmap-google-map>
-                        </div>
-                        <md-input-container class="md-block">
-                            <label>Teilnehmerazahl <span ng-if="UserCount">(Me sind <span ng-bind="UserCount"></span> Bendiger insgesamt)</span></label>
-                            <input ng-model="newTodoEntry.MaxPersonNumber" type="number" min="0" max="{{UserCount}}" name="maxPersonNumber" />
-                            <div ng-messages="saveTodoEntry.maxPersonNumber.$error" ng-if="saveTodoEntry.maxPersonNumber.$touched || saveTodoEntry.$submitted">
-                                <div ng-message="number">Ja du musch scho en Nummere igeh.</div>
-                                <div ng-message="min">Aso bitte, e normali Antwort bitte.</div>
-                                <div ng-message="max">Me sind nume <span ng-bind="UserCount"></span> Bendiger insgesamt.</div>
+                                    <md-not-found>
+                                        No states matching "{{selectedEntry.Destination}}" were found.
+                                    </md-not-found>
+                                </md-autocomplete>
                             </div>
-                        </md-input-container>
-                        <md-input-container class="md-block">
-                            <md-checkbox ng-model="newTodoEntry.Public" class="md-primary">
-                                <md-tooltip>Das heisst es chönd au "Ned-Bierbendiger" de Bitrag aluege</md-tooltip>
-                                <span>Öffentliche Post</span>
-                            </md-checkbox>
-                        </md-input-container>
-                        <md-input-container class="md-block">
-                            <md-checkbox ng-model="newTodoEntry.ProofPhotoRequired" class="md-primary">
-                                <md-tooltip>Eb mer es Bewisfoti muss mitschicke, zum de Bitrag abschicke.</md-tooltip>
-                                <span>Bewisföteli</span>
-                            </md-checkbox>
-                        </md-input-container>
-                        <div layout-align="end end" layout="row">
-                            <md-button class="md-raised md-accent" ng-click="saveTodoEntry.$valid && saveEntry()">Abschickä</md-button>
+                            <div class="map {{map.visibility ? '': 'hidden'}}" flex>
+                                <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                                    <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+                                </ui-gmap-google-map>
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Teilnehmerazahl <span ng-if="UserCount">(Me sind <span ng-bind="UserCount"></span> Bendiger
+                                    insgesamt)</span>
+                                </label>
+                                <input ng-model="newTodoEntry.MaxPersonNumber" type="number" min="0" max="{{UserCount}}" name="maxPersonNumber" />
+                                <div ng-messages="saveTodoEntry.maxPersonNumber.$error" ng-if="saveTodoEntry.maxPersonNumber.$touched || saveTodoEntry.$submitted">
+                                    <div ng-message="number">Ja du musch scho en Nummere igeh.</div>
+                                    <div ng-message="min">Aso bitte, e normali Antwort bitte.</div>
+                                    <div ng-message="max">Me sind nume <span ng-bind="UserCount"></span> Bendiger insgesamt.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-checkbox ng-model="newTodoEntry.Public" class="md-primary">
+                                    <md-tooltip>Das heisst es chönd au "Ned-Bierbendiger" de Bitrag aluege</md-tooltip>
+                                    <span>Öffentliche Post</span>
+                                </md-checkbox>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-checkbox ng-model="newTodoEntry.ProofPhotoRequired" class="md-primary">
+                                    <md-tooltip>Eb mer es Bewisfoti muss mitschicke, zum de Bitrag abschicke.</md-tooltip>
+                                    <span>Bewisföteli</span>
+                                </md-checkbox>
+                            </md-input-container>
+                            <div layout-align="end end" layout="row">
+                                <md-button class="md-raised md-accent" ng-click="saveTodoEntry.$valid && saveEntry()">Abschickä</md-button>
+                            </div>
                         </div>
-                    </div>
-                    
-                    
-                </form>
-                
-            </md-content>
-        </md-whiteframe>
+                    </form>
+                </md-content>
+            </md-whiteframe>
+
+        </div>
+
     </div>
 </div>

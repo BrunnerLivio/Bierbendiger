@@ -55,12 +55,12 @@ module.exports = function (grunt) {
         'ftp-deploy': {
             build: {
                 auth: {
-                    host: 'homos.bplaced.net',
+                    host: 'ftp.summon-helper.net',
                     port: 21,
                     authKey: 'key1'
                 },
                 src: '<%= yeoman.dist %>',
-                dest: ''
+                dest: '/public_html/projects/bendiger.beer'
             }
         },
         replace: {

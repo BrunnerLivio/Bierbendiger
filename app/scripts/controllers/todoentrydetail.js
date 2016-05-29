@@ -8,23 +8,26 @@
  * Controller of the bierbendigerApp
  */
 angular.module('bierbendigerApp')
-  .controller('TodoentrydetailCtrl', function ($scope, $location, $linq, $rootScope,googleGeocodingService) {
+  .controller('TodoentrydetailCtrl', function ($scope, $location, $linq, $rootScope, googleGeocodingService, BierbendigerService) {
     $scope.viewId ="TodoentrydetailCtrl";
     $scope.close = function(){
         $location.path("/dashboard");
     };
-    $scope.selectedEntry = $linq.Enumerable().From($scope.entries)
-        .Where(function(x){
-            return x.Id == $rootScope.$routeParams.todoId;
-        })
-        .First();
-        console.log($scope.selectedEntry);
-    $scope.landscapeMode = $scope.selectedEntry.Message || $scope.selectedEntry.Destination || $scope.selectedEntry.ApplicationDate;
-    searchLocation($scope.selectedEntry.Destination);
+    BierbendigerService.getTodoEntries().then(function(data){
+        $scope.entries = data;
+        $scope.selectedEntry = $linq.Enumerable().From(data)
+            .Where(function(x){
+                return x.Id == $rootScope.$routeParams.todoId;
+            })
+            .First();
+        $scope.landscapeMode = $scope.selectedEntry.Message || $scope.selectedEntry.Destination || $scope.selectedEntry.ApplicationDate;
+        searchLocation($scope.selectedEntry.Destination);
+            
+    });
+    
     function searchLocation(location){
            googleGeocodingService.getAddress(location)
            .then(function(data){
-               console.log(data);
                if(data.status == "OK"){
                    $scope.map = { 
                         visibility:true,
@@ -45,7 +48,6 @@ angular.module('bierbendigerApp')
                }
                
            }, function(data){
-               console.log(data);
            });
     };
   });

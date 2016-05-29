@@ -1,6 +1,6 @@
-<md-toolbar fancy-transition="triggerTransition"  fancy-transition-include="'views/templates/dashboard/newTodoEntry.html'">
+<md-toolbar fancy-transition="triggerTransition"  fancy-transition-path="/dashboard/create-todoentry">
     <div class="md-toolbar-tools">
-        <md-button flex ng-click="openNewEntryModal()">
+        <md-button flex ng-click="triggerTransition = true">
             <md-icon md-svg-src="images/icons/add186.svg"></md-icon>
             <span layout-margin>Neue Bitrag erstelle</span>
         </md-button>
@@ -10,7 +10,7 @@
     <md-progress-linear md-mode="indeterminate" ng-visible="entries == null" flex></md-progress-linear>
     <md-list>
         <md-list-item ng-repeat="entry in entries | orderBy:'-CreationDate'" fancy-transition="entry.IsOpen" fancy-transition-background="white"
-        fancy-transition-include="'views/templates/dashboard/todoEntry-detail.html'">
+        fancy-transition-path="{{ '/dashboard/todoentry/' + entry.Id }}">
             <div layout="column" class="voteBar">
                 <md-button ng-click="vote(true, entry)" class="vote">
                     <md-icon md-svg-src="images/icons/drink24.svg" layout="row" class="upVote" ng-class="{'active': entry.HasUserUpVoted}"></md-icon>
@@ -49,12 +49,12 @@
                         <md-icon md-menu-origin md-svg-src="images/icons/ellipsis1.svg"></md-icon>
                     </md-button>
                     <md-menu-content width="2" class="entryOptions">
-                        <md-menu-item>
+                        <!--<md-menu-item>
                             <md-button ng-click="editEntry(entry)" class="entryOption">
                                 <md-icon md-svg-src="images/icons/underline6.svg" md-menu-align-target></md-icon>
                                 Bearbeite
                             </md-button>
-                        </md-menu-item>
+                        </md-menu-item>-->
                         <md-menu-item>
                             <md-button ng-click="deleteEntry(entry, $event)" class="entryOption deleteEntry">
                                 <md-icon md-svg-src="images/icons/clear5.svg" md-menu-align-target></md-icon>
